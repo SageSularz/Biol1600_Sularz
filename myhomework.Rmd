@@ -1,0 +1,12 @@
+---
+title: "Homework"
+author: "Sage Mariani Sularz"
+date: "2025-01-22"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+this is for homework!

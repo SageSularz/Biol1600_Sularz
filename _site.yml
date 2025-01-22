@@ -1,9 +1,11 @@
-name: "my-website"
+name: "BIOL1600"
 output_dir: docs
 navbar:
-  title: "My Website"
+  title: "Biol1600"
   left:
     - text: "Home"
       href: index.html
     - text: "About"
       href: about.html
+    - text: Homework
+      href: myhomework.html
