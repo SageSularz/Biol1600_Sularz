@@ -7,5 +7,5 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
-    - text: Homework
+    - text: "Homework"
       href: myhomework.html

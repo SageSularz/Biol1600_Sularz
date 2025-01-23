@@ -1,6 +1,6 @@
 ---
 title: "Homework"
-author: "Sage Mariani Sularz"
+author: "Spring 2025"
 output: html_document
 ---
 
@@ -8,4 +8,5 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-this is for homework!
+This is for homework!
+
