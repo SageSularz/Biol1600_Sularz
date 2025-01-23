@@ -1,0 +1,120 @@
+---
+title: "Markdown Commands"
+author: "Sage Mariani Sularz"
+date: "2025-01-21"
+output: 
+  html_document: 
+    highlight: pygments
+    number_sections: true
+  pdf_document: default
+---
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Type as you typically would fro all your text.
+always seperate paragraphs with two carriage returns. 
+
+Here is out second paragraph. 
+
+Sage Sularz  
+Dept of Biology <br>
+UVM.  
+
+# First header (largest)
+
+Back to plain text here
+
+## Second level header
+
+### Third level header
+
+Use asterisks for *italic* and double astericks for **boldface** text. 
+Use caret for ^superscript^ and ~subscript~ and two tildas for ~~strikethrough~~
+
+> Use a greater than sign for intended quoted material.
+Looks Nice!
+
+## For lists
+- first item
+- second item 
+  + Indented list item
+  
+links [linking text](website address)
+
+**Tables** <br>
+
+First Header  | Second Header
+------------- | -------------
+Content Cell  | Content Cell
+Content Cell  | Content Cell
+
+### Fencing options
+
+Use a single tick for `in line fencing` of material.
+
+Use triple back ticks for a fenced block of text. 
+
+```
+everything here is plain text 
+even with markdown *commands*
+
+blank lines 
+
+
+properly spaced
+
+```
+
+Use r in an in-line text:
+the value of pi is `r pi + 10`.
+
+## Use chunks for r code
+
+```{r, eval=TRUE, echo=TRUE}
+# r code can be used here!
+
+print(runif(10))
+plot(runif(10),runif(10))
+
+
+```
+
+
+
+### Using LaTeX for math 
+
+Use a single dollar sign $a = b + c$ to insert 
+mathematical statements within sentences of plain text
+
+In contrast, use a double dollar sign: 
+
+$$a = b + c$$
+
+to center and offset equations.
+
+$$H_0 = Z_{a + b}$$
+
+$$S = cA^z$$
+
+$$S=cA^z_1 = z_{2 + x}$$
+
+
+
+$$\backslash$$
+$$\backslash \alpha \le b \backslash$$
+
+
+```{r, echo=TRUE, eval=TRUE}
+# here is a new chunk of code, distant from the first one in our document.
+
+z <- 1:10
+print(z)
+
+# end of the second chunk
+
+```
+
+
+
