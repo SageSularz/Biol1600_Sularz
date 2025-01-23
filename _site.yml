@@ -9,3 +9,6 @@ navbar:
       href: about.html
     - text: "Homework"
       href: myhomework.html
+output:
+  html_document:
+    theme: flatly

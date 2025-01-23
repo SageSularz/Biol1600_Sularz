@@ -90,3 +90,55 @@ rmarkdown:::site_skeleton(getwd())
 add.."output_dir:docs"
 
 use mit license
+
+# Jan 23
+
+Latex
+
+-   Rstudio
+
+-   Beamer
+
+    -   presentation but it can be a pain see fake beamer to use with pp
+
+    -   download to use all the resources
+
+-   .Swr
+
+-   Overleaf
+
+-   Inkscape
+
+    -   full open source to integrate with R for creating images
+
+## BBeditor
+
+use for editing txt files
+
+grep (reg expressions check)
+
+**Wildcards**
+
+-   `\w` a single word character [letter,number or `_`]
+
+-   `\d` a single number character [0-9]
+
+-   `\t` a single tab space
+
+-   `\s` a single space, tab, or line break
+
+-   `\n` a single line break (or try `\r`)
+
+**Quantifiers**
+
+-   add these on to any of the wildcards
+
+-   `\w+` one or more consecutive word characters
+
+-   `\w*` zero or more consecutive word characters
+
+-   `\w{3}` exactly 3 consecutive word characters
+
+-   `\w{3,}` 3 or more consecutive word characters
+
+-   `\w{3,5}` 3, 4, or 5 consecutive word characters
