@@ -1,5 +1,17 @@
 ---
-title: "About This Website"
+title: "About"
 ---
 
-More about this website.
+**Meetings**   
+Lecture: Tuesday, Thursday 1:15 - 2:30 pm, 129 Marsh Life Science  
+Lab: Wednesday, 1:10 pm - 3:40 pm, 129 Marsh Life Science  
+
+**Instructors**  
+Lecture: Nick Gotelli  
+209 Marsh Life Science
+ngotelli@uvm.edu
+By appointment, in-person meetings or video conferences
+
+Lab: George Ni 211 Marsh Life Science
+gni@uvm.edu
+By appointment, in-person meetings or video conferences

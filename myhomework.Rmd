@@ -1,7 +1,6 @@
 ---
 title: "Homework"
 author: "Sage Mariani Sularz"
-date: "2025-01-22"
 output: html_document
 ---
 
