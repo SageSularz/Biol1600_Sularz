@@ -1,0 +1,92 @@
+---
+title: "Computational Biology"
+output: 
+  html_notebook: 
+    theme: journal
+---
+
+<https://gotellilab.github.io/Bio381/>
+
+# Jan 14
+
+always annotate your code - extensively! first script to illustrate basics
+
+x \<- 5 print(x) x \<- 1:10 print(x)
+
+cntl-shift-ent \>\> run all cntl-shift-s \>\> run all wo echo
+
+# Jan 16
+
+## Commands
+
+git pull
+
+git add -A (stage files that have been changed)
+
+-   -A (all) find alt for finer selection
+
+git commit -am 'message'
+
+git push
+
+git status
+
+?? cancel commit
+
+PS1='\$ '
+
+use_git
+
+## Notes
+
+Grammar for commit message -\> present tense, active verb, no punctuation
+
+knit shortcut: 'cntl-shft-k'
+
+# Jan 21
+
+## Markdown
+
+.Rmd \>\> *knit* \>\> .md \>\> *pandoc* \>\> html *or* pdf *or* doc
+
+-   can only go one way
+
+## Git Account Navigation
+
+**View current configuration**
+
+git config --list
+
+**Update Author:**
+
+-   Globally\
+    git config --global user.name "Your Name"\
+    git config --global user.email "[your.email\@example.com](mailto:your.email@example.com){.email}"
+
+-   Locally (this repo only)\
+    git config user.name "Your Name"\
+    git config user.email "[your.email\@example.com](mailto:your.email@example.com){.email}"
+
+**Fix author on previous commits:**
+
+git commit --amend --author="Your Name \<your.email\@example.com\>"
+
+# Jan 22 - Lab
+
+## Creating a new webpage
+
+**console**
+
+rmarkdown:::site_skeleton(getwd())
+
+-   created new files- (\_site.yml) (about.Rmd) (index.Rmd)
+
+.yml file
+
+-   very sensitive to syntax
+
+-   structure and spacing very important
+
+add.."output_dir:docs"
+
+use mit license

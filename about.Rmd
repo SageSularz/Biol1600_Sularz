@@ -4,4 +4,4 @@ title: "About"
 
 ## Sage Sularz :)
 
-![Snow Day!](~/Desktop/Test/snowday.PNG)
+![Snow Day!](~/Desktop/Test/snowdaySmall.jpeg)
