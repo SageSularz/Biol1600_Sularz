@@ -1,7 +1,7 @@
 name: "Biol1600_Sularz"
 output_dir: docs
 navbar:
-  title: "Biol1600"
+  title: "Biol1600 - Sularz"
   left:
     - text: "Home"
       href: index.html
