@@ -142,3 +142,5 @@ grep (reg expressions check)
 -   `\w{3,}` 3 or more consecutive word characters
 
 -   `\w{3,5}` 3, 4, or 5 consecutive word characters
+
+# Jan 28
