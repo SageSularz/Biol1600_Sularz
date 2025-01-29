@@ -2,6 +2,8 @@
 title: "About"
 ---
 
-## Sage Sularz :)
+## Sage Sularz :)  
+
+Link to my Github repository ->  [Biol1600_Sularz](https://github.com/SageSularz/Biol1600_Sularz.git)
 
 ![Snow Day!](~/Desktop/Test/snowdaySmall.jpeg)

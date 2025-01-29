@@ -142,3 +142,39 @@ grep (reg expressions check)
 -   `\w{3,}` 3 or more consecutive word characters
 
 -   `\w{3,5}` 3, 4, or 5 consecutive word characters
+
+# Jan 28
+
+## R's four data types
+
++----------+---------------+------------+
+|          | homoginous    | hetero     |
++==========+===============+============+
+| 1-D      | Atomic Vector | List       |
++----------+---------------+------------+
+| 2-D      | Matrix        | Data Frame |
+|          |               |            |
+|          |               | vectors    |
++----------+---------------+------------+
+| Multi- D | array         |            |
++----------+---------------+------------+
+
+Types of atomic vectors
+
+-   charactor strings
+
+-   intergers
+
+-   double
+
+-   integers , doubles are "numeric"
+
+-   factor
+
+    -   determine char strings w/ groupings
+
+-   logical
+
+    -   TRUE/FALSE
+
+-   vector of lists
