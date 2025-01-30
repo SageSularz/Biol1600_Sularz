@@ -8,7 +8,11 @@ navbar:
     - text: "About"
       href: about.html
     - text: "Homework"
-      href: myhomework.html
+      menu:
+        - text: "Homework 1 & 2"
+          href: myhomework.html
+        - text: "Homework 3"
+          href: homework_3.html
 output:
   html_document:
     theme: flatly
