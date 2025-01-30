@@ -1,6 +1,6 @@
 ---
-title: "Homework"
-author: "Spring 2025"
+title: "Introductory Homework"
+author: "Weeks 1 & 2"
 output: html_document
 ---
 
@@ -8,5 +8,16 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-This is for homework!
+**Homework 1**
+
+-   The link to my github  [github.com/SageSularz](https://github.com/SageSularz)
+
+-   A PDF of the ‘default’ text and code knitted in RStudio [Test PDF](https://github.com/SageSularz/Biol1600_Sularz/blob/main/Test.pdf)
+
+
+
+**Homework 2**   
+
+-   The link to my github repository [SageSularz/Biol1600_Sularz](https://github.com/SageSularz/Biol1600_Sularz)
+
 
