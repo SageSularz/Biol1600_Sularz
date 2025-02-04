@@ -169,7 +169,97 @@ z^2
 
 # 3) Recycling
 
+
+### Fill in from Jan 30 ###
+
 # but what if vector lengths are not equal
 z <- c(10, 20, 30)
 x <- c(1, 2)
 z + x # 10 + 1, 20 + 2, 30 + 1
+
+z <- c(3.1, 9.2, 1.3, 0.4, 7.5)
+
+# positive index values
+z[c(2,3)]
+
+# negative index values to exclude elements
+z[-c(2,3)]
+
+# create a vector of logical elements to select conditions
+
+z[z<3]
+
+# equivalent to the following
+tester <- z<3
+print(tester)
+z[tester]
+
+# also use which() function to find subscript indicators
+which(z<3)
+
+# this works, but is overkill; just use the boolean operator
+z[which(z<3)]
+
+# can also use length() for relative positioning to last element
+z[-(length(z):(length(z)-2))]
+
+# also can subset using named vector elements
+names(z) <- letters[1:5]
+z[c("b","c")]
+
+## Relational operators in R ##
+
+# <   less than
+# >   greater than
+# <=  less than or equal to
+# >=  greater than or equal to
+# ==  equal to
+
+## Logical operators ##
+
+# ! not
+# & and (vector)
+# | or (vector)
+# xor(x,y)
+
+x <- 1:5
+y <- c(1:3,7,7)
+
+x == 2 # Does x equal 2?
+x != 2 # Show elements that do NOT equal 2 ## produces boolean vector (T/F values)
+
+# and vs or statments
+x == 1 & y == 7 # x equal 1 AND y equals 7 (is there a vector that meets requirement?)
+x == 1 | y == 7 # x equal 1 OR y equal 7
+x == 3 | y == 3
+
+xor(x==3, y==3) # one or the other is true but not both
+
+# common errors with logicals
+# some may give error but some may not!
+# = versus ==
+
+z2 <- 5
+z2 == 4 | 6  # gives wrong answer bc trying to make boolean argument of 6
+
+z2 == 4 | z2 == 6 # need boolean argument on both sides
+
+
+## Subscripting with missing values ##
+
+set.seed(90) # manually give R () seed for random number generating so you can get the same random number each time you run the code
+z <- runif(10) # simple integer sequence
+print(z)
+
+z < 0.5 # create logical vector
+z[z < 0.5] # use as index call # if true keep element if false discard it
+
+which(z < 0.5) # what are the positions of the elements that meet criteria # use to get indices for logical
+z[which(z < 0.5)] # does same as above most the time- see example below
+
+zD <- c(z,NA,NA) # contaminate it
+zD[zD < 0.5] # NA values carried along!
+zD[which(zD < 0.5)] # NA values dropped
+# Changes length of vector, might care might not
+
+

@@ -147,17 +147,17 @@ grep (reg expressions check)
 
 ## R's four data types
 
-+----------+---------------+------------+
-|          | homoginous    | hetero     |
-+==========+===============+============+
-| 1-D      | Atomic Vector | List       |
-+----------+---------------+------------+
-| 2-D      | Matrix        | Data Frame |
-|          |               |            |
-|          |               | vectors    |
-+----------+---------------+------------+
-| Multi- D | array         |            |
-+----------+---------------+------------+
++------------+---------------+------------+
+|            | homoginous    | hetero     |
++============+===============+============+
+| 1-D        | Atomic Vector | List       |
++------------+---------------+------------+
+| 2-D        | Matrix        | Data Frame |
+|            |               |            |
+|            |               | vectors    |
++------------+---------------+------------+
+| Multi- D   | array         |            |
++------------+---------------+------------+
 
 Types of atomic vectors
 
@@ -178,3 +178,19 @@ Types of atomic vectors
     -   TRUE/FALSE
 
 -   vector of lists
+
+# Jan 30
+
+### Atomic Vectors
+
+on class page
+
+# Feb 4
+
+## Wrapping up Vectors
+
+AtomicVectors.R
+
+## Matrices and Lists 
+
+Matrices_Lists.R
