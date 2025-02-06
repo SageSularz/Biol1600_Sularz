@@ -13,6 +13,8 @@ navbar:
           href: myhomework.html
         - text: "Homework 3"
           href: homework_3.html
+        - text: "Homework 4"
+          href: homework4.html
 output:
   html_document:
     theme: flatly

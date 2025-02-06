@@ -178,3 +178,19 @@ Types of atomic vectors
     -   TRUE/FALSE
 
 -   vector of lists
+
+# Jan 30
+
+### Atomic Vectors
+
+on class page
+
+# Feb 4
+
+## Wrapping up Vectors
+
+AtomicVectors.R
+
+## Matrices and Lists
+
+Matrices_Lists.R
