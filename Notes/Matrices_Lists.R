@@ -234,3 +234,25 @@ data[3,2]
 
 data_names <- data[c("state", "county")]
 str(data_names)
+
+
+
+####### FEB 11 ########
+# Creating datasets
+
+# code for reading in data frame for .csv
+my_data <- read.table(file = "StudyData.csv",
+                      header = TRUE,
+                      sep = ",",
+                      comment.char = "#")
+head(my_data) #now exists in the R enviroment
+str(my_data) # inspect the data, note the NA was reconized as numeric
+my_data$newVar <- runif(4)
+
+write.table(x = my_data,
+            file = "SampleOutputFile.csv",
+            sep = ",")
+# this is actually not a great method
+
+saveRDS(my_data, file = "my_data.RDS") # RDS suffix is not required but good for clairity
+restored_my_data <- readRDS("my_data.RDS")
