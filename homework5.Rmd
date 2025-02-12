@@ -1,0 +1,12 @@
+---
+title: "Homework 5"
+author: "Sage Sularz"
+date: "2025-02-12"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Working with Matrices, Lists, and Data Frames

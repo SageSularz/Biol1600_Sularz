@@ -147,17 +147,17 @@ grep (reg expressions check)
 
 ## R's four data types
 
-+----------+---------------+------------+
-|          | homoginous    | hetero     |
-+==========+===============+============+
-| 1-D      | Atomic Vector | List       |
-+----------+---------------+------------+
-| 2-D      | Matrix        | Data Frame |
-|          |               |            |
-|          |               | vectors    |
-+----------+---------------+------------+
-| Multi- D | array         |            |
-+----------+---------------+------------+
++------------+---------------+------------+
+|            | homoginous    | hetero     |
++============+===============+============+
+| 1-D        | Atomic Vector | List       |
++------------+---------------+------------+
+| 2-D        | Matrix        | Data Frame |
+|            |               |            |
+|            |               | vectors    |
++------------+---------------+------------+
+| Multi- D   | array         |            |
++------------+---------------+------------+
 
 Types of atomic vectors
 
@@ -194,3 +194,59 @@ AtomicVectors.R
 ## Matrices and Lists
 
 Matrices_Lists.R
+
+# Feb 6
+
+## Matrices and Lists cont.
+
+# Feb 11
+
+meta data
+
+-   used to be harder but with ai you can just type out what you want and include as much info as you can and it will be
+
+Creating and saving files
+
+-   rather than send all the code you used to create something just save your work as a new file
+
+-   can only save one thing at a time but you can just bundle them together then save
+
+Finish up with Matrices_lists.R
+
+Check point
+
+-   right now working with linear code
+
+-   now learn different control structures to mange your script
+
+-   aka functions
+
+### Functions
+
+best practices
+
+-   get the header with the function name, discription, input, and output (like metadata for func)
+
+-   names inside function can be short and basic
+
+    -   function should be kept simple and just do its job
+
+-   should be able to see on one screen if its longer should probs break into multiple
+
+-   provide all default values for all functional aurguments
+
+-   see example in Functions.R for good format and asthetics
+
+working with your function
+
+-   create function \>\> save function to R enviroment \>\>call it
+
+-   objects are in short term memory- what happens in function stays in function
+
+-   function should be completely self suffiecent and work anywhere
+
+    -   not dependent on the enviroment of the user
+
+    -   so important to include input in header so others know
+
+-   
