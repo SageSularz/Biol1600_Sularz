@@ -250,3 +250,68 @@ working with your function
     -   so important to include input in header so others know
 
 -   
+
+# Feb 13 
+
+*Functions.R*
+
+### scoping 
+
+local variables
+
+-   visable only with the function
+
+-   can not call or use outside the function
+
+Global variables
+
+-   visable broadly in the R enviroment
+
+### function notes 
+
+-   when running first looks for variables in local envrioment if it cant find it it looks in global
+
+-   function should be focused on one task
+
+fit_linear2
+
+-   passing in a single list with vectors and contains if statement to determine if user is inputing variables
+
+-   `NULL` represents the null object in **R**: it is a [reserved](http://127.0.0.1:19511/help/library/base/help/reserved) word. `NULL` is often returned by expressions and functions whose value is undefined.
+
+Mean arguments
+
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `trim` | the fraction (0 to 0.5) of observations to be trimmed from each end of `x` before the mean is computed. Values of trim outside that range are taken as the nearest endpoint. |
++--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+-   cuts out the extreme outliers \^\^
+
+|  |  |
+|----|----|
+| `na.rm` | a logical evaluating to `TRUE` or `FALSE` indicating whether `NA` values should be stripped before the computation proceeds. |
+
+\####
+
+`do.call` constructs and executes a function call from a name or a function and a list of arguments to be passed to it.
+
+Why are functions important
+
+-   functions break large tasks into smaller managable problems that can be linked together
+
+### Control Structures 
+
+3 ways to use if statement
+
+1.   `if (condition) {expression1}`
+
+2.   `if (condition) {expression1} else {expression2}`
+
+3.  
+
+    ```         
+    if (condition1) {expression1} else
+      if (condition2) {expression2} else
+    ```
+
+think about bunddling into functions or user does not have to wade around your code

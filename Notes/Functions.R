@@ -99,4 +99,101 @@ HardyWeinberg3 <- function(p = runif(1)) {
 #############################################################
 
 
+######### FEB 13 ########
+###########################
+
+my_func <- function(a = 3, b = 4) {
+  z <- a + b
+  return(z)
+}
+
+my_func()
+
+
+# second function
+# it will load into memory but throw errors when run
+my_func_bad <- function(a = 3) {
+  z <- a + b
+  return(z)
+}
+
+my_func_bad()
+# Error in my_func_bad() : object 'b' not found
+
+b <- 100 # add global variable for b and rerun
+
+# third function
+# better than the last
+my_func_ok <- function(a = 3) {
+  bb <- 100
+  z <- a + bb
+  return(z)
+}
+
+my_func_ok() # no more problems
+
+print(bb) # bb only exists inside the function can not be called or used
+
+
+# 4th function
+#############################################################
+# Function: fit_linear
+# fits simple regression line
+# Input: numeric vector of predictor (x) and response (y)
+# Output: slope and p-value
+#--------------------------------------------------------
+fit_linear <- function(x = runif(20), y = runif(20)) {
+ my_mod <- lm(y~x) # fit the model
+ my_out <- c(slope = summary(my_mod)$coefficients[2,1],
+             p_value = summary(my_mod)$coefficients[2,4])
+ plot(x = x, y = y) # quick plot to check output
+  return(my_out)
+}
+#############################################################
+fit_linear()
+
+
+# 5th function- similar but with more complexities
+#############################################################
+# Function: fit_linear
+# fits simple regression line
+# Input: numeric vector of predictor (x) and response (y)
+# Output: slope and p-value
+#--------------------------------------------------------
+fit_linear2 <- function(p = NULL) {
+  if(is.null(p)) {
+    p <- list(x = runif(20), y = runif(20)) # if user provides input func will skip this
+  }
+  my_mod <- lm(p$y~p$x) # fit the model
+  my_out <- c(slope = summary(my_mod)$coefficients[2,1],
+              p_value = summary(my_mod)$coefficients[2,4])
+  plot(x = p$x, y = p$y) # quick plot to check output
+  return(my_out)
+}
+#############################################################
+fit_linear2()
+
+# add some perameters and rerun
+# will now skip if statement
+my_pars <- list(x = 1:10, y = sort(runif(10)))
+fit_linear2(p = my_pars) # need to feed to function so it understands
+
+
+# function 6
+# using do.call to pass a list of perameters to function
+
+z <- c(runif(99),NA)
+mean(z) # mean doesnt work bc NA
+mean(x = z, na.rm=TRUE) # change the default value for na.rm
+mean(x = z, na.rm=TRUE, trim = 0.05)
+l <- list(x = z, na.rm=TRUE, trim = 0.5) # bundle parameters as a list
+do.call(mean, l) # use the do.call function with the function name and parameter list
+
+
+
+
+
+
+
+
 
