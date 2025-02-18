@@ -11,11 +11,9 @@ knitr::opts_chunk$set(echo = TRUE)
 
 # Working with Matrices, Lists, and Data Frames
 
-
-<div style="text-align: center;">    
-[Link to Homework5.R](https://github.com/SageSularz/Biol1600_Sularz/blob/main/Homework%20Scripts/Homework5.R)    
-</div>
-
+::: {style="text-align: center;"}
+[Link to Homework5.R](https://github.com/SageSularz/Biol1600_Sularz/blob/main/Homework%20Scripts/Homework5.R)
+:::
 
 1.  Assign to the variable `n_dims` a single random integer between 3 and 10.
 
@@ -190,7 +188,7 @@ knitr::opts_chunk$set(echo = TRUE)
     my_data <- data.frame(
       my_unis = runif(26, min = 0, max = 10), 
       my_letters = sample(LETTERS))
-      
+
       head(my_data)
     ```
 
