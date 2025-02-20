@@ -281,9 +281,9 @@ fit_linear2
 
 Mean arguments
 
-+---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| `trim`  | the fraction (0 to 0.5) of observations to be trimmed from each end of `x` before the mean is computed. Values of trim outside that range are taken as the nearest endpoint. |
-+---------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `trim`                            | the fraction (0 to 0.5) of observations to be trimmed from each end of `x` before the mean is computed. Values of trim outside that range are taken as the nearest endpoint. |
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 -   cuts out the extreme outliers \^\^
 
@@ -316,7 +316,7 @@ Why are functions important
 
 think about bunddling into functions or user does not have to wade around your code
 
-# Feb 18 
+# Feb 18
 
 Continuing with control structures...
 
@@ -420,7 +420,7 @@ if FALSE
 
 -   could put a naked else at the end and sometimes people do but the rest will run either way it is redundant
 
-### ifelse 
+### ifelse
 
 ```         
 ifelse(test,yes,no)
@@ -447,3 +447,17 @@ i , j, k
 -   best to stick to one so you reconize it
 
 -   
+
+# Feb 20 
+
+### for loops
+
+can expand model in many ways
+
+-   `round()`
+
+-   exstiction of sexually reproducing pop
+
+-   add envriomental noice that is not a random walk
+
+-   add measurement error (add rnorm(0,1) for 0's wo exstiction
