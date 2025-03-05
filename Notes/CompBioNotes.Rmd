@@ -475,3 +475,67 @@ Issues with while loops
 expand.grid
 
 -   create data frame from any type of vectors
+
+# Feb 26
+
+### Extended Lecture
+
+### dplyr and SQL 
+
+what is tidy verse
+
+-   curated set of packages to help with data cleaning/wrangling/analysis
+
+-   meant to be all inclusive from importing data all the way to communicating it
+
+data import/managemnt
+
+-   readr- import and read imported data
+
+SQL : another option for interacting with large datasets
+
+-   Structured Query Language (SQL)
+
+dplyr : for data manipulation and structuring your dataframes
+
+the core verbs used in dplyr
+
+-   filter()
+
+    -   picks/subset observations by their values
+
+    -   uses `> , >=, <, <=, ==, !`
+
+    -   filter automatically excluded NA, need to ask for them
+
+-   arrange()
+
+    -   reorder rows
+
+-   select()
+
+    -   choosing variables by their name
+
+-   summarize() and group_by()
+
+    -   collapse many values down to a single summary
+
+    -   use group_by() for additional calcs
+
+-   mutate()
+
+    -   create new variables with functions of existing variables
+
+to avoid a conflict between packages `dplyr : : filter()`
+
+What is the difference between dplyr and base R?
+
+-   pipe statements (or piping) `%>%`
+
+    -   these are sequences of actions that will change your dataset by passing an intermediate result onto the next function in sequence
+
+    -   you should avoid this when you need to manipulate more than one object at a time or if there are meaningful intermediate objects
+
+    -   **Formatting:** should always have space before it and usally followed by new line
+
+    -   Caution: these can be long sequences and if there is an error it will be a huge pain in the ass to find and resolve
