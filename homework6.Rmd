@@ -57,7 +57,7 @@ ggplot(data = nic_data, aes(x = nic_dose, y = height)) +
   theme_minimal()
 ```
 
-![](images/clipboard-1371843240.png){width="445"}
+![](~/Desktop/Test/docs/Data/hmk7Plot.png)
 
 ### Exploring Parameters
 
@@ -98,7 +98,7 @@ for (i in sample_sizes) {
 ```
 
 |  |  |  |
-|:----------------------:|:----------------------:|:----------------------:|
+|:--:|:--:|:--:|
 | Sample Size (n) | P value | Plot |
 | 2 | 0.01925821 | ![](images/clipboard-2275924250.png){width="95"} |
 | 10 | 4.617667e-17 | ![](images/clipboard-1499447561.png){width="95"} |
@@ -143,7 +143,7 @@ for (i in multiplier) {
 ```
 
 |  |  |  |
-|:----------------------:|:----------------------:|:----------------------:|
+|:--:|:--:|:--:|
 | Adjusted Standard Diviation | P-value | Plot |
 | 0.2 | 8.848216e-43 | ![](images/clipboard-1256575226.png){width="98"} |
 | 0.6 | 5.691976e-14 | ![](images/clipboard-3220745574.png){width="98"} |
