@@ -1,0 +1,158 @@
+---
+title: "Homework 7"
+author: "Sage Sularz"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Data manipulations using the dplyr package
+
+```         
+#check packages out of the library
+library(tidyverse)
+library(dplyr)
+
+#call for data
+data("iris")
+```
+
+**1) Examine the structure of the iris data set. How many observations and variables are in the data set?**
+
+```         
+str(iris) 
+```
+
+`data frame | 150 observations | 5 variables`
+
+**2) Create a new data frame `iris1` that contains only the species *virginica* and *versicolor* with sepal lengths longer than 6 cm and sepal widths longer than 2.5 cm. How many observations and variables are in the data set?**
+
+```         
+iris1 <- filter(iris, Species == "virginica" | Species ==  "versicolor", Sepal.Length > 6, Sepal.Width > 2.5)
+str(iris1)
+```
+
+`data frame | 56 observations | 5 variables`
+
+**3) Create a `iris2` data frame from `iris1` that contains only the columns for Species, Sepal.Length, and Sepal.Width. How many observations and variables are in the data set?**
+
+```         
+iris2 <- select(iris1, Species, Sepal.Length, Sepal.Width)
+str(iris2)
+```
+
+`data frame | 56 observations | 3 variables`
+
+**4) Create an `iris3` data frame from `iris2` that orders the observations from largest to smallest sepal length. Show the first 6 rows of this data set.**
+
+```         
+iris3 <- arrange(iris2, by = desc(Sepal.Length))
+head(iris3, n = 6)
+```
+
+```         
+   Species      Sepal.Length  Sepal.Width
+1 virginica          7.9         3.8
+2 virginica          7.7         3.8
+3 virginica          7.7         2.6
+4 virginica          7.7         2.8
+5 virginica          7.7         3.0
+6 virginica          7.6         3.0
+```
+
+**5) Create an `iris4` data frame from `iris3` that creates a column with a sepal area (length \* width) value for each observation. How many observations and variables are in the data set?**
+
+```         
+iris4 <- mutate(iris3, Sepal.Area = Sepal.Length * Sepal.Width)
+str(iris4)
+```
+
+`data frame | 56 observations | 4 variables`
+
+**6) Create `iris5` that calculates the average sepal length, the average sepal width, and the sample size of the entire `iris4` data frame and print `iris5`.**
+
+```         
+iris5 <- iris4 %>%
+  summarize(
+    avg_sepal_length = mean(Sepal.Length),
+    avg_sepal_width = mean(Sepal.Width),
+    sample_size = n()
+  )
+
+print(iris5)
+```
+
+```         
+   avg_sepal_length   avg_sepal_width   sample_size
+1         6.698214        3.041071          56
+```
+
+**7) Create `iris6` that calculates the average sepal length, the average sepal width, and the sample size *for each species* of in the `iris4` data frame and print `iris6`.**
+
+```         
+iris6 <- iris4 %>%
+  group_by(Species) %>%
+  summarize(
+    avg_sepal_length = mean(Sepal.Length),
+    avg_sepal_width = mean(Sepal.Width),
+    sample_size = n()
+  )
+  
+print(iris6)
+```
+
+```         
+   Species       avg_sepal_length   avg_sepal_width    sample_size
+1 versicolor             6.48            2.99            17
+2 virginica              6.79            3.06            39
+```
+
+**8) Rework all of your previous statements (except for `iris5`) into an extended piping operation that uses `iris` as the input and generates `irisFinal` as the output.**
+
+```         
+irisFinal <- iris %>%
+  filter(Species %in% c("virginica", "versicolor"), Sepal.Length > 6, Sepal.Width > 2.5) %>%
+  select(Species, Sepal.Length, Sepal.Width) %>%
+  arrange(desc(Sepal.Length)) %>%
+  mutate(Sepal.Area = Sepal.Length * Sepal.Width) %>%
+  group_by(Species) %>%
+  summarize(
+    avg_sepal_length = mean(Sepal.Length),
+    avg_sepal_width = mean(Sepal.Width),
+    sample_size = n()
+  )
+
+print(irisFinal)
+```
+
+```         
+   Species       avg_sepal_length    avg_sepal_width    sample_size
+1 versicolor             6.48             2.99             17
+2 virginica              6.79             3.06             39
+```
+
+**9) Create a ‘longer’ data frame using the original `iris` data set with three columns named “Species”, “Measure”, “Value”. The column “Species” will retain the species names of the data set. The column “Measure” will include whether the value corresponds to Sepal.Length, Sepal.Width, Petal.Length, or Petal.Width and the column “Value” will include the numerical values of those measurements.**
+
+```         
+iris_long <- iris %>%
+  pivot_longer(
+    cols = c(Sepal.Length, Sepal.Width, Petal.Length, Petal.Width),  
+    names_to = "Measure",   
+    values_to = "Value"     
+  ) %>%
+  select(Species, Measure, Value)  
+
+head(iris_long)
+```
+
+```         
+  Species   Measure     Value
+1 setosa  Sepal.Length   5.1
+2 setosa  Sepal.Width    3.5
+3 setosa  Petal.Length   1.4
+4 setosa  Petal.Width    0.2
+5 setosa  Sepal.Length   4.9
+6 setosa  Sepal.Width    3  
+```

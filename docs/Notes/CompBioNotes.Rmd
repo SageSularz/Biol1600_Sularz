@@ -251,11 +251,11 @@ working with your function
 
 -   
 
-# Feb 13 
+# Feb 13
 
 *Functions.R*
 
-### scoping 
+### scoping
 
 local variables
 
@@ -267,7 +267,7 @@ Global variables
 
 -   visable broadly in the R enviroment
 
-### function notes 
+### function notes
 
 -   when running first looks for variables in local envrioment if it cant find it it looks in global
 
@@ -281,15 +281,15 @@ fit_linear2
 
 Mean arguments
 
-+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| `trim` | the fraction (0 to 0.5) of observations to be trimmed from each end of `x` before the mean is computed. Values of trim outside that range are taken as the nearest endpoint. |
-+--------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `trim`                           | the fraction (0 to 0.5) of observations to be trimmed from each end of `x` before the mean is computed. Values of trim outside that range are taken as the nearest endpoint. |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 -   cuts out the extreme outliers \^\^
 
-|  |  |
-|----|----|
-| `na.rm` | a logical evaluating to `TRUE` or `FALSE` indicating whether `NA` values should be stripped before the computation proceeds. |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| `na.rm`                          | a logical evaluating to `TRUE` or `FALSE` indicating whether `NA` values should be stripped before the computation proceeds. |
++----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
 
 \####
 
@@ -299,13 +299,13 @@ Why are functions important
 
 -   functions break large tasks into smaller managable problems that can be linked together
 
-### Control Structures 
+### Control Structures
 
 3 ways to use if statement
 
-1.   `if (condition) {expression1}`
+1.  `if (condition) {expression1}`
 
-2.   `if (condition) {expression1} else {expression2}`
+2.  `if (condition) {expression1} else {expression2}`
 
 3.  
 
@@ -315,3 +315,227 @@ Why are functions important
     ```
 
 think about bunddling into functions or user does not have to wade around your code
+
+# Feb 18
+
+Continuing with control structures...
+
+Control structure = determine what is run in your code and what is not
+
+### examples of generic structures
+
+if TRUE
+
+> block a
+>
+> expression
+>
+> block b
+
+if FALSE
+
+> \-
+
+**More complex**
+
+Block A
+
+> if (condition) {expression} else {expression}
+
+if TRUE
+
+> block a
+>
+> expression
+>
+> block b
+
+if FALSE
+
+> block a
+>
+> expression 2
+>
+> block b
+
+**Different structure**
+
+> block A
+
+> if (condition 1) {expression 1} else
+>
+> > if (condition 2) {expression 2} else
+>
+> block b
+
+*condition 1 True*
+
+*condition 2 false*
+
+> block A
+
+> expression 1
+>
+> block b
+
+*condition 1 true*
+
+*condition 2 true*
+
+> block A
+>
+> expression 1
+>
+> block b
+
+-   it doesnt matter what expression 2 is will get same if 1 is true
+
+-   why? old computer shit
+
+*condition 1 false*
+
+*condition 2 false*
+
+> block A
+>
+> block b
+
+*condition 1 false*
+
+*condition 2 true*
+
+> block A
+>
+> expression 2
+>
+> block b
+
+**More straight forward approach**
+
+> block a
+>
+> if (condition 1) {expression 1}
+>
+> if (condition 2) {expression 2}
+
+-   could put a naked else at the end and sometimes people do but the rest will run either way it is redundant
+
+### ifelse
+
+```         
+ifelse(test,yes,no)
+
+test is an object that can be coerced to a logical yes/no
+yes return values for true elements of test
+no return vales for false elements of test
+```
+
+## For Loops
+
+isssues
+
+-   can be slow (cbind, lists)
+
+-   not always nessasary there are easier ways to do thing
+
+-   many ops can be handled using `apply` functions
+
+i , j, k
+
+-   trad labels for var
+
+-   best to stick to one so you reconize it
+
+-   
+
+# Feb 20
+
+### for loops
+
+can expand model in many ways
+
+-   `round()`
+
+-   exstiction of sexually reproducing pop
+
+-   add envriomental noice that is not a random walk
+
+-   add measurement error (add rnorm(0,1) for 0's wo exstiction
+
+# Feb 25
+
+### For loops 
+
+Issues with while loops
+
+-   complex boolean statements
+
+-   no idea if it will ever end, will just keep running in theory
+
+expand.grid
+
+-   create data frame from any type of vectors
+
+# Feb 26
+
+### Extended Lecture
+
+### dplyr and SQL 
+
+what is tidy verse
+
+-   curated set of packages to help with data cleaning/wrangling/analysis
+
+-   meant to be all inclusive from importing data all the way to communicating it
+
+data import/managemnt
+
+-   readr- import and read imported data
+
+SQL : another option for interacting with large datasets
+
+-   Structured Query Language (SQL)
+
+dplyr : for data manipulation and structuring your dataframes
+
+the core verbs used in dplyr
+
+-   filter()
+
+    -   picks/subset observations by their values
+
+    -   uses `> , >=, <, <=, ==, !`
+
+    -   filter automatically excluded NA, need to ask for them
+
+-   arrange()
+
+    -   reorder rows
+
+-   select()
+
+    -   choosing variables by their name
+
+-   summarize() and group_by()
+
+    -   collapse many values down to a single summary
+
+    -   use group_by() for additional calcs
+
+-   mutate()
+
+    -   create new variables with functions of existing variables
+
+to avoid a conflict between packages `dplyr : : filter()`
+
+What is the difference between dplyr and base R?
+
+-   pipe statements (or piping) `%>%`
+
+    -   these are sequences of actions that will change your dataset by passing an intermediate result onto the next function in sequence
+
+    -   you should avoid this when you need to manipulate more than one object at a time or if there are meaningful intermediate objects
+
+    -   **Formatting:** should always have space before it and usally followed by new line
+
+    -   Caution: these can be long sequences and if there is an error it will be a huge pain in the ass to find and resolve
