@@ -1,0 +1,13 @@
+logfile: 134317-logfile.txt
+#######################
+R version: R version 4.4.2 (2024-10-31)
+platform: aarch64-apple-darwin20
+running: macOS Sequoia 15.3.1
+#----------------------
+random number seed: 405171701
+timestamp: Tue Mar 25 13:43:17 2025
+#----------------------
+libraries loaded:
+devtools pracma pryr upscaler usethis
+#######################
+.........10.........20.........30.........40.........50.........60.........70.........80.........90.........100
