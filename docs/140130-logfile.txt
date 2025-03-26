@@ -1,0 +1,62 @@
+logfile: 140130-logfile.txt
+#######################
+R version: R version 4.4.2 (2024-10-31)
+platform: aarch64-apple-darwin20
+running: macOS Sequoia 15.3.1
+#----------------------
+random number seed: -284863290
+timestamp: Tue Mar 25 14:01:30 2025
+#----------------------
+libraries loaded:
+devtools pracma pryr upscaler usethis
+#######################
+INFO  [25-Mar 14:01:31] memory_used=136MB;i=1
+INFO  [25-Mar 14:01:31] memory_used=136MB;i=2
+INFO  [25-Mar 14:01:31] memory_used=136MB;i=3
+INFO  [25-Mar 14:01:31] memory_used=136MB;i=4
+INFO  [25-Mar 14:01:32] memory_used=136MB;i=5
+INFO  [25-Mar 14:01:32] memory_used=136MB;i=6
+INFO  [25-Mar 14:01:32] memory_used=144MB;i=7
+INFO  [25-Mar 14:01:32] memory_used=216MB;i=8
+INFO  [25-Mar 14:01:32] memory_used=936MB;i=9
+INFO  [25-Mar 14:01:37] memory_used=8136MB;i=10
+10
+INFO  [25-Mar 14:02:09] memory_used=8136MB;i=1
+10
+INFO  [25-Mar 14:02:09] memory_used=136MB;i=2
+10
+INFO  [25-Mar 14:02:09] memory_used=136MB;i=3
+10
+INFO  [25-Mar 14:02:09] memory_used=136MB;i=4
+10
+INFO  [25-Mar 14:02:09] memory_used=136MB;i=5
+10
+INFO  [25-Mar 14:02:09] memory_used=136MB;i=6
+10
+INFO  [25-Mar 14:02:09] memory_used=144MB;i=7
+10
+INFO  [25-Mar 14:02:09] memory_used=216MB;i=8
+10
+INFO  [25-Mar 14:02:10] memory_used=936MB;i=9
+10
+INFO  [25-Mar 14:02:14] memory_used=8136MB;i=10
+.
+INFO  [25-Mar 14:04:11] memory_used=8136MB;i=1
+.
+INFO  [25-Mar 14:04:11] memory_used=136MB;i=2
+.
+INFO  [25-Mar 14:04:11] memory_used=136MB;i=3
+.
+INFO  [25-Mar 14:04:11] memory_used=136MB;i=4
+.
+INFO  [25-Mar 14:04:11] memory_used=136MB;i=5
+.
+INFO  [25-Mar 14:04:11] memory_used=136MB;i=6
+.
+INFO  [25-Mar 14:04:11] memory_used=144MB;i=7
+.
+INFO  [25-Mar 14:04:11] memory_used=216MB;i=8
+.
+INFO  [25-Mar 14:04:12] memory_used=936MB;i=9
+10
+INFO  [25-Mar 14:04:16] memory_used=8136MB;i=10
