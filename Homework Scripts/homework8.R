@@ -15,46 +15,29 @@ library(MASS) # for maximum likelihood estimation
 
 # generate fake data
 # quick and dirty, a truncated normal distribution to work on the solution set
-### z <- rnorm(n=3000,mean=0.2)
-### z <- data.frame(1:3000,z)
-### names(z) <- list("ID","myVar")
-### z <- z[z$myVar>0,]
-### str(z)
-### summary(z$myVar)
-
-# max likelihood perams for gamma distr
-gamPars <- fitdistr(z$myVar,"gamma")
-print(gamPars)
-str(gamPars)
-gamPars$estimate["shape"]
-## Create new data set based on maximum likelihood perameters
-z <- rgamma(n=42,shape=1.8992323,rate=1.0003482)
-z <- data.frame(1:42,z)
-names(z) <- list("ID","myVar")
-z <- z[z$myVar>0,]
-str(z)
-summary(z$myVar)
+# z <- rnorm(n=3000,mean=0.2)
+# z <- data.frame(1:3000,z)
+# names(z) <- list("ID","myVar")
+# z <- z[z$myVar>0,]
+# str(z)
+# summary(z$myVar)
 
 # plot histogram
-# Here we are switching from qplot to ggplot for more graphics options. We are also rescaling the y axis of the histogram from counts to density, so that the area under the histogram equals 1.0.
 p1 <- ggplot(data=z, aes(x=myVar, y=..density..)) +
   geom_histogram(color="grey60",fill="cornsilk",size=0.2)
 print(p1)
 
 # Add empirical density curve
-# Now modify the code to add in a kernel density plot of the data. This is an empirical curve that is fitted to the data. It does not assume any particular probability distribution, but it smooths out the shape of the histogram
 p1 <-  p1 +  geom_density(linetype="dotted",size=0.75)
 print(p1)
 
 # Get maximum likelihood parameters for normal
-# fit a normal distribution to your data and grab the maximum likelihood estimators of the two parameters of the normal, the mean and the variance
 normPars <- fitdistr(z$myVar,"normal")
 print(normPars)
 str(normPars)
 normPars$estimate["mean"] # note structure of getting a named attribute
 
 # Plot normal probability density
-# call the dnorm function inside ggplot’s stat_function to generate the probability density for the normal distribution. Read about stat_function in the help system to see how you can use this to add a smooth function to any ggplot. Note that we first get the maximum likelihood parameters for a normal distribution fitted to thse data by calling fitdistr. Then we pass those parameters (meanML and sdML to stat_function):
 meanML <- normPars$estimate["mean"]
 sdML <- normPars$estimate["sd"]
 
@@ -98,13 +81,74 @@ pSpecial + statSpecial
 
 
 
+#################################
+## Generate a new Gamma dataset
+#################################
+
+# max likelihood perams for gamma distr
+gamPars <- fitdistr(z$myVar,"gamma")
+print(gamPars)
+str(gamPars)
+gamPars$estimate["shape"]
+
+## Create new data set based on maximum likelihood perameters
+z <- rgamma(n=42,shape=1.8992323,rate=1.0003482)
+z <- data.frame(1:42,z)
+names(z) <- list("ID","myVar")
+z <- z[z$myVar>0,]
+str(z)
+summary(z$myVar)
+
+# plot histogram
+p1 <- ggplot(data=z, aes(x=myVar, y=..density..)) +
+  geom_histogram(color="grey60",fill="cornsilk",size=0.2)
+print(p1)
+
+# Plot gamma probability density
+gammaPars <- fitdistr(z$myVar,"gamma")
+shapeML <- gammaPars$estimate["shape"]
+rateML <- gammaPars$estimate["rate"]
+
+stat4 <- stat_function(aes(x = xval, y = ..y..), fun = dgamma, colour="brown", n = length(z$myVar), args = list(shape=shapeML, rate=rateML))
+p1 + stat4
+
+### Compare to orginal
+z <- read.table("2024_insect_metabolism.csv",header=TRUE,sep=",")
+str(z)
+summary(z)
+
+# plot histogram
+p1 <- ggplot(data=z, aes(x=myVar, y=..density..)) +
+  geom_histogram(color="grey60",fill="cornsilk",size=0.2)
+print(p1)
+
+# Plot gamma probability density
+gammaPars <- fitdistr(z$myVar,"gamma")
+shapeML <- gammaPars$estimate["shape"]
+rateML <- gammaPars$estimate["rate"]
+
+stat4 <- stat_function(aes(x = xval, y = ..y..), fun = dgamma, colour="brown", n = length(z$myVar), args = list(shape=shapeML, rate=rateML))
+p1 + stat4
 
 
 
+#################################
+## Combining Plots
+#################################
 
 
+library("magick")
+img1 <- image_read("hmk8_newdata_plot8.jpeg")
+img2 <- image_read("hmk8_mydata_plot8.jpeg")
+
+img1 <- image_annotate(img1, "   Generated Gamma Dataset", size = 25, gravity = "southwest", color = "black")
+img2 <- image_annotate(img2, "             My Original Dataset", size = 25, gravity = "southwest", color = "black")
+
+# Combine side by side
+combined <- image_append(c(img1, img2))
+
+# Save the combined image
+image_write(combined, path = "hmk8_combined_plot8.jpeg", format = "jpeg")
 
 
-
-
-
+![](~/Desktop/Test/hmk8_combined_plot8.jpeg){width="70%"}
