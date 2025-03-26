@@ -60,6 +60,7 @@ for (i in sample_sizes) {
           axis.ticks.x = element_blank(),
           plot.margin = margin(2, 2, 2, 2)) +
     ggtitle(paste("n =", i))
+  ggsave(paste0("hmk6n", i,".jpeg"), width = 3, height = 3, units = "cm")
 
   print(box_plot)
 }

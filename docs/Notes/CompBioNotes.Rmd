@@ -281,15 +281,15 @@ fit_linear2
 
 Mean arguments
 
-+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| `trim`                           | the fraction (0 to 0.5) of observations to be trimmed from each end of `x` before the mean is computed. Values of trim outside that range are taken as the nearest endpoint. |
-+----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `trim`                            | the fraction (0 to 0.5) of observations to be trimmed from each end of `x` before the mean is computed. Values of trim outside that range are taken as the nearest endpoint. |
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 -   cuts out the extreme outliers \^\^
 
-+----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
-| `na.rm`                          | a logical evaluating to `TRUE` or `FALSE` indicating whether `NA` values should be stripped before the computation proceeds. |
-+----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| `na.rm`                           | a logical evaluating to `TRUE` or `FALSE` indicating whether `NA` values should be stripped before the computation proceeds. |
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
 
 \####
 
@@ -464,7 +464,7 @@ can expand model in many ways
 
 # Feb 25
 
-### For loops 
+### For loops
 
 Issues with while loops
 
@@ -539,3 +539,249 @@ What is the difference between dplyr and base R?
     -   **Formatting:** should always have space before it and usally followed by new line
 
     -   Caution: these can be long sequences and if there is an error it will be a huge pain in the ass to find and resolve
+
+# Mar 20
+
+## Strategic Coding WS
+
+### The problem of scaling
+
+physiological demand and supply
+
+-   biological species cant just scale up size and still meet demand needs
+
+    -   same applies to working with a script
+
+-   need to take function pieces from different sources to scale up functionality
+
+ex of scales problems
+
+-   you have written a single script to open a single data file and analyze results for specific species. you have 50 species and 50 data files
+
+-   over time you need to add 10 new data files. remove three other, and edit the contents of the og 12
+
+symptoms of scaling problems
+
+-   c&pasting many lines of code in single script
+
+-   incosistant formatting and obscure object and file names
+
+-   little or no annotation of code or data files
+
+-   coppying, renaming, and editing entire script files
+
+-   running model variations by using find and replace
+
+-   copying number by hand from screen output
+
+-   saving graphics through GUI interface
+
+-   difficult to use code to do anything up the og task
+
+-   eventual inability to fully reproduce on your own
+
+Attributes of a wellscaled large project
+
+-   well organized project folders with informative file and object names
+
+-   extensive annotation of scripted and data files
+
+-   most code in user defined functions (short, simple, limited input &output)
+
+-   code can handle multiple input files through batch processing
+
+-   use of RDS objects for conplex projects and collaborative coding
+
+-   Holy grail: source("Scripts/MainScript.R")
+
+## Working in R
+
+install :
+
+-   pracma
+
+-   pryr
+
+-   install_github("ngotelli/upscaler")
+
+Organization
+
+-   use subheaders in R script like you do in rmd
+
+-   colapse sections of your code to keep organize
+
+Snippets
+
+-   set your own autofill templates
+
+-   tools \> edit code snippets
+
+-   you should pick your own flare for them (currently m.\_\_\_\_)
+
+### folders
+
+what is clean data?
+
+-   data set that can be opened in R
+
+<!-- -->
+
+-   og data goes into "OriginalData" folder once edited at all it goes to "CleanData"
+
+Scripts
+
+FUnctions
+
+Plots
+
+-   any images created while coding
+
+    -   jpegs, pdf, anything that was made to stare at
+
+-   dont save images by using Rstudio GUI interface
+
+    -   learn ggsave and similar
+
+-   use letters, not numbers to name consecutive images or tables
+
+    -   huge pain if you have to go back and rename them better to keep organized in publication format
+
+outputs
+
+-   only used to create and store summary .csv
+
+DataObjects
+
+```         
+x <- runif(10) # object to save 
+saveRDS(object = x,
+        file = "DataObjects/x.rds") # save to disk
+restored_x <- readRDS(file = "DataObjects/x.rds") # reopen to new name
+```
+
+-   good to share with out someone fucking with your stuff
+
+-   only works in R
+
+Markdown
+
+-   good to share formated code with images in a nice way
+
+-   
+
+# Mar 25
+
+## Strat. Coding 
+
+Ended last time talking about structuring your project...
+
+RDS object
+
+-   compressed R object (only used in R world)
+
+-   saves time rerunning code or for sharing with others without them being able to edit you code
+
+-   similar to load and save
+
+    -   but those arent ideal cause they save the entire R enviroment and that is alot
+
+### Log file 
+
+-   plain txt file that is generated in the R system
+
+-   what to use for?
+
+    -   to store the metadata about program/project
+
+    -   to decorate the code (put in differnt label to what the program is doing)
+
+    -   debugging (error in code and want to talk to program while it runs)
+
+-   often used by IT folks who need to keep track of large systems
+
+-   many differnt systems
+
+    Changes in R
+
+-   need to be able to look back and understand the enviroment a program was written in (R system, computer, libraries, ect)
+
+`set_up_log()`
+
+-   creates new txt file with info about current session
+
+    -    date time user libraries etc
+
+how to use?
+
+-   same way you annotate code
+
+    -   `l('load libraries')` vs. `# load libraries`
+
+### Coding with User defined functions 
+
+`source()`
+
+-   runs something else l ike functions and stuff
+
+Quick side quest on types of type..
+
+-   snake_case
+
+-   camelCase
+
+-   PascalCase
+
+-   kabob-case
+
+-   SCREAMING_SNAKE_CASE
+
+-   snake case is most common but make sure to be intentional about what you use, it very often matters
+
+Best practice for user defined functions
+
+-   keep it simple if you have more than like 2-3 inputs its doing too much
+
+    -   you dont need to make you and everyones life hard just make multiple smaller specific functions
+
+    -   does one thing isolation
+
+    -   shouldnt have to scroll -keep it short!
+
+-   has a verb based discriptive title
+
+-   dont fuck around with global variables
+
+    -   not worth the problems either as an input or saveing to global env
+
+    -   use default vals that user can sub for their own or random num generator
+
+Functional programing
+
+step 1) create sudo code
+
+-   on a paper (just not console) and plan out what you need to do
+
+-   Make an outline :)
+
+-   take a large project and break it down into approachable bites
+
+```         
+EX: 
+Project: Host dinner party 
+Steps: 
+select_recipes
+write_shopping_list
+buy_grocieries
+cook_meal
+serve_meal
+clean_up
+```
+
+```         
+build_function(c("select_recipes",
+"write_shopping_list",
+"buy_grocieries",
+"cook_meal",
+"serve_meal",
+"clean_up"))
+```
