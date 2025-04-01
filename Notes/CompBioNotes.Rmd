@@ -281,15 +281,15 @@ fit_linear2
 
 Mean arguments
 
-+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| `trim`       | the fraction (0 to 0.5) of observations to be trimmed from each end of `x` before the mean is computed. Values of trim outside that range are taken as the nearest endpoint. |
-+--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `trim`   | the fraction (0 to 0.5) of observations to be trimmed from each end of `x` before the mean is computed. Values of trim outside that range are taken as the nearest endpoint. |
++----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 -   cuts out the extreme outliers \^\^
 
-+---------------+------------------------------------------------------------------------------------------------------------------------------+
-| `na.rm`       | a logical evaluating to `TRUE` or `FALSE` indicating whether `NA` values should be stripped before the computation proceeds. |
-+---------------+------------------------------------------------------------------------------------------------------------------------------+
++-----------+------------------------------------------------------------------------------------------------------------------------------+
+| `na.rm`   | a logical evaluating to `TRUE` or `FALSE` indicating whether `NA` values should be stripped before the computation proceeds. |
++-----------+------------------------------------------------------------------------------------------------------------------------------+
 
 \####
 
@@ -786,7 +786,7 @@ build_function(c("select_recipes",
 "clean_up"))
 ```
 
-# Mar 27 
+# Mar 27
 
 Components of a function
 
@@ -828,7 +828,7 @@ What shouldnt you do?
 
 -   F -\> F
 
-    -    a function shouldnt call another function
+    -   a function shouldnt call another function
 
     -   rather F1 -\> O
 
@@ -839,3 +839,118 @@ What shouldnt you do?
     -   rather S1 -\> RDS
 
 Common starting point: I -\> F -\> O
+
+# Apr 1
+
+## ggplot 
+
+after leaving early last class I do not have access to the code we are building on in class today so just taking notes here and will fill in once notes are posted. I am peeved
+
+okay for future reference
+
+![Gotelli's GitHub]([https://github.com/GotelliLab/Bio381https://github.com/GotelliLab/Bio381](https://github.com/GotelliLab/Bio381){.uri})
+
+Started to fill in from downloaded Rmd off his git but we are moving on to the next lecture
+
+## ggplot II
+
+### Plotting multiple panel graphs with `patchwork`
+
+-   how do we combine all 4 plot types? Patchwork!
+
+-   like working within gg use the + to add things on (or together)
+
+    -   \+ plot_layout()
+
+        -   change orientation
+
+        -   change area each plot takes up
+
+    -   \+ plot_spacer()
+
+        -   create space in between plots
+
+        -   maybe to add something else later or just for asthetics
+
+    -   nested layers
+
+        -   manipulate arrangement in a more complex way
+
+-   operators
+
+    -   -operator for subtrack placement
+    -   / and \| for intuitive layouts
+        -   `(g1 | g2 | g3)/g4` obvious what it will look like
+        -   this is nice bc it just makes sense i think
+
+-   annotation
+
+    -   use patchwork to add captions titles and more
+
+        -   like what you might do in basic ggplot but this seems nicer and all asethtic shit in one spot
+
+    -   add letter names or other little labels to plots (v important!) use `plot_annotation()`
+
+-   orientation
+
+    -    `scale_x_reverse()`
+
+        -   mirror, flip and do whatever gymnastics with your plots
+
+    -   `coord_flip()`
+
+        -   rather than flipflopping on x/y access effect the actual coords
+
+-   Saving
+
+    -   save your shit!!
+
+    -   use ggsave to be specific on format and specs
+
+    -   below is a good example of common specs for publishing
+
+```         
+ggsave(filename="MyPlot.pdf"
+       ,plot=g3, 
+       device="pdf",
+       width=20,
+       height=20,
+       units="cm",
+       dpi=300)
+```
+
+-   Basic mapping of aesthetic variables
+
+-   discrete variables
+
+    -   start paying more attention to `geom_point()` and `aes()`
+
+    -   map to color -\> aes(color = class)
+
+    -   map to shape -\> aes(shape = class)
+
+        -   ggplot is not a disign expert if you ask it to do something that looks like shit or is wrong it will do it
+
+    -   map to size -\> aes(size = class)
+
+        -   gg will rember what you did last and use that to follow future directions (no ai just whats in your enviroment)
+
+        -   better for continuous variables
+
+-   continuous
+
+    -   map to size can be used for a bubble plot- looks nice could be useful
+
+    -   map to color -\> makes almost a heat map
+
+-   Multiple variables at once
+
+    -   package more information into your visuals
+
+Faceting variables for more effective groupings
+
+-   split by variable
+
+-   this is this mini grid thing I was looking for!
+
+    -   shows relationships between groups AND where the missing data is
