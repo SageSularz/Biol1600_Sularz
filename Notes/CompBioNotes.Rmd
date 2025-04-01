@@ -281,15 +281,15 @@ fit_linear2
 
 Mean arguments
 
-+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| `trim`                            | the fraction (0 to 0.5) of observations to be trimmed from each end of `x` before the mean is computed. Values of trim outside that range are taken as the nearest endpoint. |
-+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
++--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+| `trim`       | the fraction (0 to 0.5) of observations to be trimmed from each end of `x` before the mean is computed. Values of trim outside that range are taken as the nearest endpoint. |
++--------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
 
 -   cuts out the extreme outliers \^\^
 
-+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
-| `na.rm`                           | a logical evaluating to `TRUE` or `FALSE` indicating whether `NA` values should be stripped before the computation proceeds. |
-+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
++---------------+------------------------------------------------------------------------------------------------------------------------------+
+| `na.rm`       | a logical evaluating to `TRUE` or `FALSE` indicating whether `NA` values should be stripped before the computation proceeds. |
++---------------+------------------------------------------------------------------------------------------------------------------------------+
 
 \####
 
@@ -671,7 +671,7 @@ Markdown
 
 # Mar 25
 
-## Strat. Coding 
+## Strat. Coding
 
 Ended last time talking about structuring your project...
 
@@ -685,7 +685,7 @@ RDS object
 
     -   but those arent ideal cause they save the entire R enviroment and that is alot
 
-### Log file 
+### Log file
 
 -   plain txt file that is generated in the R system
 
@@ -709,7 +709,7 @@ RDS object
 
 -   creates new txt file with info about current session
 
-    -    date time user libraries etc
+    -   date time user libraries etc
 
 how to use?
 
@@ -717,7 +717,7 @@ how to use?
 
     -   `l('load libraries')` vs. `# load libraries`
 
-### Coding with User defined functions 
+### Coding with User defined functions
 
 `source()`
 
@@ -785,3 +785,57 @@ build_function(c("select_recipes",
 "serve_meal",
 "clean_up"))
 ```
+
+# Mar 27 
+
+Components of a function
+
+O = object
+
+-   RDS
+
+S = script
+
+F = function script
+
+M = main script
+
+I = input
+
+-   csv, etc
+
+P = product (output)
+
+-   csv, tiffs, etc
+
+there is not one "correct " way to write a program but there is general structual parts that are imporant
+
+Main script
+
+-   function
+
+-   function
+
+-   function
+
+The main script is the hub the functions will run through
+
+-   make sure functions function
+
+-   this could be it if your project is simple enough
+
+What shouldnt you do?
+
+-   F -\> F
+
+    -    a function shouldnt call another function
+
+    -   rather F1 -\> O
+
+-   S -\> S
+
+    -   scripts shouldnt call eachother
+
+    -   rather S1 -\> RDS
+
+Common starting point: I -\> F -\> O
