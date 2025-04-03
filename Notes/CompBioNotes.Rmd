@@ -842,13 +842,13 @@ Common starting point: I -\> F -\> O
 
 # Apr 1
 
-## ggplot 
+## ggplot
 
 after leaving early last class I do not have access to the code we are building on in class today so just taking notes here and will fill in once notes are posted. I am peeved
 
 okay for future reference
 
-![Gotelli's GitHub]([https://github.com/GotelliLab/Bio381https://github.com/GotelliLab/Bio381](https://github.com/GotelliLab/Bio381){.uri})
+![Gotelli's GitHub](%5Bhttps://github.com/GotelliLab/Bio381https://github.com/GotelliLab/Bio381%5D(https://github.com/GotelliLab/Bio381)%7B.uri%7D)
 
 Started to fill in from downloaded Rmd off his git but we are moving on to the next lecture
 
@@ -893,9 +893,11 @@ Started to fill in from downloaded Rmd off his git but we are moving on to the n
 
 -   orientation
 
-    -    `scale_x_reverse()`
+    -   `scale_x_reverse()`
 
-        -   mirror, flip and do whatever gymnastics with your plots
+    ```         
+    -   mirror, flip and do whatever gymnastics with your plots
+    ```
 
     -   `coord_flip()`
 
@@ -947,6 +949,8 @@ ggsave(filename="MyPlot.pdf"
 
     -   package more information into your visuals
 
+# Apr 3
+
 Faceting variables for more effective groupings
 
 -   split by variable
@@ -954,3 +958,75 @@ Faceting variables for more effective groupings
 -   this is this mini grid thing I was looking for!
 
     -   shows relationships between groups AND where the missing data is
+
+-   ajusting axis scaling
+
+    -   depends on where you want to draw readers attention and what point you want to make
+
+-   `facet_wrap()`
+
+    -   w 2 classifying labs
+
+    -   doesnt include missing combinations
+
+        -   use facet_grid or mod with m1 + facet_wrap(\~class + fl`, drop=FALSE)` to bring them back
+
+-   facet with other aesthetic mapping within rows or columns
+
+    -   same kind of graph but now its colored
+
+-   changes to geom()
+
+    -   if you have lots of data it may be too overwelming to put in all the raw data instead consiter geom_smooth
+
+    -   basically a colored line reping a fitted regression line
+
+    -   shows linear trends in data and x & y subsets better
+
+-   what about other plot types?
+
+    -   change geom\^\^\^\^
+
+        -   `geom_point` vs `geom_smooth` vs `geom_boxplot` etc
+
+        -   what visual strategy communicated your point best?
+
+### Mapping aesthetics within geoms
+
+color: maps to points or lines with no thickness
+
+fill: fills space basically
+
+-   you can totaly combine all this however you feel like
+
+`geom_point(data=d[d$drv=="4",])`
+
+-   only select sub data as specified
+
+-   following normal sub setting rules within geom_point
+
+-   this will override previous statements in the plot
+
+## ggplot III
+
+### Barplots
+
+multiple groupings
+
+-   use the fill to map to variables within each bar
+
+-   `alpha` = opacity (0=transparent & 1=opaque)
+
+tapply
+
+-   wants to know x
+
+-   and needs a grouping factor
+
+-   passes name of function
+
+### Boxplots
+
+jitter: offsets points so you can see more of them
+
+-   gives some perspective on sample size

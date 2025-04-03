@@ -15,9 +15,20 @@ if (is.null(x) | is.null(y)) {
 
 # function body
 
+  p1 <- ggplot(x, aes(x = abundance,)) +
+    geom_histogram(binwidth = 10, fill = "skyblue", color = "black") +
+    ggtitle("Histogram of Abundance")
+
+  # richness histogram
+  p2 <- ggplot(x, aes(x = richness)) +
+    geom_histogram(binwidth = 1, fill = "lightgreen", color = "black") +
+    ggtitle("Histogram of Species Richness")
+
+  # save plots
 
 
-return(print('...checking function: create_histograms()'))
+  return("Histograms saved")
+
 
 } # end of function create_histograms
 # --------------------------------------

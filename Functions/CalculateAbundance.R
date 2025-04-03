@@ -7,18 +7,14 @@
 ########################################
 calculate_abundance <- function(x=NULL,y=NULL){
 
-# assign parameter defaults
-if (is.null(x) | is.null(y)) {
-  x <- runif(10)
-  y <- runif(10)
-}
+  if (is.null(x)) {
+    x <- data.frame(bird_count = c(1, 2, 3, 4))
+  }
 
-# function body
+  # function body
+  total <- sum(x$bird_count, na.rm = TRUE)
 
-
-
-return(print('...checking function: calculate_abundance()'))
-
+  return(total)
 } # end of function calculate_abundance
 # --------------------------------------
 # calculate_abundance()

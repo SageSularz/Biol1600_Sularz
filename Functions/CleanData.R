@@ -2,22 +2,20 @@
 # FUNCTION clean_data
 # required packages: none
 # description: Cleaning the data for any empty/missing cases
-# inputs: list of csv files
-# outputs: list of cleaned csv files
+# inputs:
+# outputs:
 ########################################
-clean_data <-function(data_list) {
-  lapply(data_list, function(df)
+clean_data <-function(x=NULL,y=NULL) {
 
-# assign parameter defaults
-if (is.null(x)  {
-  x <- runif(10)
+  if (is.null(x)) {
+    x <- data.frame(species = c("sparrow", NA, "robin"), bird_count = c(3, 2, NA))
   }
 
-# function body
+  # function body
+  x <- na.omit(x)
+  x <- x[x$bird_count > 0, ]
 
-
-
-return(print('...checking function: clean_data()'))
+  return(x)
 
 } # end of function clean_data
 # --------------------------------------

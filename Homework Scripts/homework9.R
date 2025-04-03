@@ -40,7 +40,21 @@ build_function(c("clean_data",
                  "create_histograms"))
 
 
+#Create an initial empty data frame to hold the above summary statistics-you should have columns for the file name, one for abundance, one for species richness, and one for year. You should also have a separate dataframe with only the regression model summary statistics.
 
+. <- rep(NA, years)
+
+stats <- data.frame(filename=.,
+                    abundance=.,
+                    richness=.,
+                    year=.)
+
+regression <- data.frame(estimate=c(NA,NA),
+                         std.err=c(NA,NA),
+                         t.value=c(NA,NA),
+                         p.value=c(NA,NA))
+
+rownames(regression) <- c("intercept", "abundance")
 
 
 

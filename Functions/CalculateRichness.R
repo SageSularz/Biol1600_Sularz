@@ -7,18 +7,14 @@
 ########################################
 calculate_richness <- function(x=NULL,y=NULL){
 
-# assign parameter defaults
-if (is.null(x) | is.null(y)) {
-  x <- runif(10)
-  y <- runif(10)
-}
+  if (is.null(x)) {
+    x <- data.frame(species = c("sparrow", "robin", "sparrow", "finch"))
+  }
 
-# function body
+  # function body
+  richness <- length(unique(x$species))
 
-
-
-return(print('...checking function: calculate_richness()'))
-
+  return(richness)
 } # end of function calculate_richness
 # --------------------------------------
 # calculate_richness()
