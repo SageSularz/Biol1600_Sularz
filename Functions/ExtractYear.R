@@ -5,19 +5,20 @@
 # inputs:
 # outputs:
 ########################################
-extract_year <- function(x=NULL,y=NULL){
+extract_year <- function(x=NULL){
 
 # assign parameter defaults
-if (is.null(x) | is.null(y)) {
-  x <- runif(10)
-  y <- runif(10)
-}
+  #if (is.null(x)) {
+  #  x <- data.frame(species = c("sparrow", NA, "robin"), bird_count = c(3, 2, NA))
+ # }
 
 # function body
+  for (filename in names(countdata_list)) {
+    year_string <- grep("[\d{4}]")
+    year <- as.numeric(year_string)
+  }
 
-
-
-return(print('...checking function: extract_year()'))
+return(print(year))
 
 } # end of function extract_year
 # --------------------------------------

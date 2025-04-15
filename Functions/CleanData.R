@@ -5,7 +5,7 @@
 # inputs:
 # outputs:
 ########################################
-clean_data <-function(x=NULL,y=NULL) {
+clean_data <-function(x=NULL) {
 
   if (is.null(x)) {
     x <- data.frame(species = c("sparrow", NA, "robin"), bird_count = c(3, 2, NA))

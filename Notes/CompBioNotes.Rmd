@@ -147,17 +147,17 @@ grep (reg expressions check)
 
 ## R's four data types
 
-+------------+---------------+------------+
-|            | homoginous    | hetero     |
-+============+===============+============+
-| 1-D        | Atomic Vector | List       |
-+------------+---------------+------------+
-| 2-D        | Matrix        | Data Frame |
-|            |               |            |
-|            |               | vectors    |
-+------------+---------------+------------+
-| Multi- D   | array         |            |
-+------------+---------------+------------+
++----------+---------------+------------+
+|          | homoginous    | hetero     |
++==========+===============+============+
+| 1-D      | Atomic Vector | List       |
++----------+---------------+------------+
+| 2-D      | Matrix        | Data Frame |
+|          |               |            |
+|          |               | vectors    |
++----------+---------------+------------+
+| Multi- D | array         |            |
++----------+---------------+------------+
 
 Types of atomic vectors
 
@@ -281,15 +281,15 @@ fit_linear2
 
 Mean arguments
 
-+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| `trim`   | the fraction (0 to 0.5) of observations to be trimmed from each end of `x` before the mean is computed. Values of trim outside that range are taken as the nearest endpoint. |
-+----------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|  |  |
+|----|----|
+| `trim` | the fraction (0 to 0.5) of observations to be trimmed from each end of `x` before the mean is computed. Values of trim outside that range are taken as the nearest endpoint. |
 
 -   cuts out the extreme outliers \^\^
 
-+-----------+------------------------------------------------------------------------------------------------------------------------------+
-| `na.rm`   | a logical evaluating to `TRUE` or `FALSE` indicating whether `NA` values should be stripped before the computation proceeds. |
-+-----------+------------------------------------------------------------------------------------------------------------------------------+
+|  |  |
+|----|----|
+| `na.rm` | a logical evaluating to `TRUE` or `FALSE` indicating whether `NA` values should be stripped before the computation proceeds. |
 
 \####
 
@@ -1030,3 +1030,111 @@ tapply
 jitter: offsets points so you can see more of them
 
 -   gives some perspective on sample size
+
+# Apr 8
+
+## ggplot III (cont)
+
+New Packages:
+
+```         
+library(ggridges) # ridge plots
+library(ggbeeswarm) # beeswarm plots
+library(GGally) # parallel coordinates plots
+library(ggpie) # pie charts
+library(ggmosaic) # mosaic plots
+library(scatterpie) # scatter pies on map
+library(waffle) # for waffle plots
+library(DescTools) # for converting table to long
+library(treemap) # for tree maps
+```
+
+-   violin plot
+
+-   ridgeline plot
+
+-   beeswarm plot
+
+-   bubble plot
+
+    -   bubble size is dependent
+
+-   parallel coordinates plot
+
+    -   looking for a data set, and specific column numbers
+
+    -   each element in dataset is rescaled to fit the same y axis
+
+    -   tells you about the variability and patterns of co variation
+
+    -   option to simplify by putting elements in rank order first
+
+-   lollipop plot
+
+    -   need to build from scratch
+
+    -   `geom_segment` : draw a line
+
+        -   needs to know x, x end, y, and y end (coords for start and stop of line)
+
+    -   `geom_point` : head of the lolly
+
+        -   uses same coords as segment
+
+-   pie chart
+
+    -   dont use it not great at conveying proportions and looks like crap
+
+-   waffle plot
+
+    -   better alt to pie
+
+-   scatterpie diagrams
+
+    -   better way if you really like pie charts
+
+-   mosaic plots
+
+# April 10
+
+## ggplot color
+
+### **Using Colors**
+
+1.  Aesthetics
+
+    -   Colors that are attractive - large geoms (fills) - pale colors - small geoms(lines,points) - bright colors
+
+    -   Colors that highlight elements - pale, grey to de-emphasize - bright or saturated colors to emphasize
+
+    -   Colors that are visible to the color blind
+
+    -   Colors that convert well to black and white
+
+<!-- -->
+
+2.  Information content
+
+    -   Discrete scale
+
+        -   colors to group similar treatments
+
+        -   neutral colors (black,grey,white) to indicate control groups
+
+        -   Symbolic colors (heat=red, cool = blue, photosynthesis/growth=green, oligotrophic=blue, eutrophic=brown, infected=red)
+
+        -   Colors that map to chemical stains or gels, or even colors of organisms
+
+    -   Continuous scale
+
+        -   monochromatic (differing shades of 1 color)
+
+        -   2 tone chromatic scale (from color x to color y)
+
+        -   3 tone divergent scale (from color x through color y to color z)
+
+        -   Use color information within and between graphs
+
+        -   show color names, hex in base R
+
+        -   show color schemes in colorbrewer

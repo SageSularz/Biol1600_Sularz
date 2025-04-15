@@ -5,27 +5,33 @@
 # inputs:
 # outputs:
 ########################################
-create_histograms <- function(x=NULL,y=NULL){
+create_histograms <- function(data){
 
 # assign parameter defaults
-if (is.null(x) | is.null(y)) {
-  x <- runif(10)
-  y <- runif(10)
-}
 
 # function body
 
-  p1 <- ggplot(x, aes(x = abundance,)) +
-    geom_histogram(binwidth = 10, fill = "skyblue", color = "black") +
-    ggtitle("Histogram of Abundance")
+  # abundace
+    ggplot(data, aes(x = abundance)) +
+    geom_histogram(binwidth = 50, fill = "steelblue", color = "black") +
+    labs(
+      title = paste("Bird Abundance from", data[1, 4], "through", data[10, 4]),
+      x = "Abundance",
+      y = "Frequency" ) +
+    theme_bw()
 
-  # richness histogram
-  p2 <- ggplot(x, aes(x = richness)) +
-    geom_histogram(binwidth = 1, fill = "lightgreen", color = "black") +
-    ggtitle("Histogram of Species Richness")
+  ggsave("abundance_histogram_HMK9.png")
 
-  # save plots
+    ggplot(data, aes(x = richness)) +
+    geom_histogram(binwidth = 50, fill = "steelblue", color = "black") +
+    labs(
+      title = "Histogram of Bird Richness Across All Years",
+      x = "Richness",
+      y = "Frequency"
+    ) +
+    theme_minimal()
 
+  ggsave("richness_histogram_HMK9.png")
 
   return("Histograms saved")
 
