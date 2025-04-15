@@ -1,7 +1,6 @@
 ---
-title: "homework10"
-author: "Sage Sularz"
-date: "2025-04-15"
+title: "Homework 10"
+
 output: html_document
 ---
 

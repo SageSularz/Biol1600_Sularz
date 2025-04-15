@@ -9,11 +9,9 @@
 <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
 
 
-<meta name="author" content="Sage Sularz" />
 
-<meta name="date" content="2025-02-05" />
 
-<title>Homework 4</title>
+<title>Homework 10</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -298,145 +296,65 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Homework 4</h1>
-<h4 class="author">Sage Sularz</h4>
-<h4 class="date">2025-02-05</h4>
+<h1 class="title toc-ignore">Homework 10</h1>
 
 </div>
 
 
-<div
-id="suppose-x-1.1-a-2.2-and-b-3.3.-assign-each-expression-to-the-value-of-the-variable-z-and-print-the-value-stored-in-z."
-class="section level3">
-<h3>1) Suppose <em>x</em> = 1.1, <em>a</em> = 2.2, and <em>b</em> = 3.3.
-Assign each expression to the value of the variable <em>z</em> and print
-the value stored in <em>z</em>.</h3>
-<pre><code>x &lt;- 1.1
-a &lt;- 2.2
-b &lt;- 3.3</code></pre>
-<ol style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code>z = x^{a^b}
-print(z)</code></pre>
-<p><code>[1] 3.61714</code></p>
-<ol start="2" style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code>z = (x^a)^b
-print(z)</code></pre>
-<p><code>[1] 1.997611</code></p>
-<ol start="3" style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code>z = 3*x^3 + 2*x^2 + 1
-print(z)</code></pre>
-<p><code>[1] 7.413</code></p>
+<div id="advanced-ggploting" class="section level1">
+<h1>Advanced ggploting</h1>
+<p>Data is a portion of a parts list for a custom Lego build. Originally
+designed and data generated on stud.io</p>
+<p>‘Part’ -&gt; ID number for that piece</p>
+<p>‘Color’ -&gt; Lego color code</p>
+<p>‘Quantity’-&gt; number of x piece in x color</p>
+<p>‘LEGO.COM’-&gt; Price per piece on lego.com</p>
+<p><code>lego &lt;- read.csv("rebrickable_parts_moc-dragon.csv")</code></p>
+<pre><code>&gt; str(lego)
+&#39;data.frame&#39;:   248 obs. of  5 variables:
+ $ Part    : chr  &quot;11089&quot; &quot;87747&quot; &quot;53451&quot; &quot;30374&quot; ...
+ $ Color   : int  0 0 0 0 0 0 0 0 0 0 ...
+ $ Quantity: int  1 45 15 1 3 6 2 9 2 1 ...
+ $ Is.Spare: logi  FALSE FALSE FALSE FALSE FALSE FALSE ...
+ $ LEGO.COM: num  0.29 0.09 NA NA NA 0.08 0.12 NA 0.1 0.1 ...</code></pre>
+<p>Colors for plots correspond to the published hex codes from
+Lego.com</p>
+<p><code>tabled_data2 &lt;- as.data.frame(table(Color=lego$Color))</code></p>
+<pre><code>my_cols &lt;- c(&quot;#05131D&quot;, &quot;#0055BF&quot;, &quot;#237841&quot;, &quot;#C91A09&quot;, &quot;#9BA19D&quot;, &quot;#FFFFFF&quot;, &quot;#E4CD9E&quot;, &quot;#958A73&quot;, &quot;#FF800D&quot;, &quot;#582A12&quot;, &quot;#A0A5A9&quot;, &quot;#6C6E68&quot;, &quot;#F6D7B3&quot;, &quot;#FFF03A&quot;, &quot;#352100&quot;, &quot;#720E0F&quot;)</code></pre>
+<div id="plot-1-waffle-plot" class="section level3">
+<h3>Plot 1: Waffle Plot</h3>
+<p>Distribution of colors in the set</p>
+<pre><code>waffle &lt;- ggplot(data=tabled_data2,
+  aes(fill = Color, values = Freq)) +
+  waffle::geom_waffle(n_rows = 8, 
+                      size = 0.33, 
+                      colour = &quot;white&quot;) +
+  scale_fill_manual(name = &quot;Color Code&quot;,
+                    values = my_cols)+
+  coord_equal() +
+  theme_void()
+waffle</code></pre>
+<p><img
+src="Outputs/LegoWafflePlot.jpeg"
+style="width:70.0%" /></p>
 </div>
-<div id="using-the-rep-and-seq-functions-create-the-following-vectors"
-class="section level3">
-<h3>3) Using the <code>rep</code> and <code>seq</code> functions, create
-the following vectors:</h3>
-<ol style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code>z &lt;- c(seq(1:8), seq(from = 7, to = 1))
-print(z)</code></pre>
-<p><code>[1] 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1</code></p>
-<ol start="2" style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code>z &lt;- c(1:5)
-z &lt;- rep(x=z,times=z)
-print(z)</code></pre>
-<p><code>[1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5</code></p>
-<ol start="3" style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code>z &lt;- c(1:5)
-z &lt;- rep(x=5:1,times=z)
-print(z)</code></pre>
-<p><code>[1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1</code></p>
+<div id="plot-2-tree-plot" class="section level3">
+<h3>Plot 2: Tree Plot</h3>
+<pre><code>treemap(dtf=tabled_data2, index=&quot;Color&quot;, vSize=&quot;Freq&quot;, type=&quot;index&quot;, palette= my_cols, title = &quot; Frequency of Brick Colors in Lego MOC *Numeric values corrispond to Lego color codes&quot;</code></pre>
+<p><img
+src="Outputs/MocTreePlot.jpeg"
+style="width:70.0%" /></p>
 </div>
-<div
-id="create-a-vector-of-two-random-uniform-numbers.-in-a-spatial-map-these-can-be-interpreted-as-x-and-y-coordinates-that-give-the-location-of-an-individual.-using-one-of-rs-inverse-trigonometry-functions-asin-acos-or-atan-convert-these-numbers-into-polar-coordinates"
-class="section level3">
-<h3>3) Create a vector of two random uniform numbers. In a spatial map,
-these can be interpreted as <em>x</em> and <em>y</em> coordinates that
-give the location of an individual. Using one of R’s inverse
-trigonometry functions (<code>asin()</code>, <code>acos()</code>,
-or <code>atan()</code>), convert these numbers into polar
-coordinates</h3>
-<pre><code>set.seed(2)
-cartesian &lt;- runif(2)
-
-polar &lt;- c(sqrt(cartesian[1]^2 + cartesian[2]^2), atan(cartesian[2] / cartesian[1]))
-print(polar)</code></pre>
-<p><code>[1] 0.7262993 1.3134100</code></p>
+<div id="plot-3-parallel-coordinates-plot" class="section level3">
+<h3>Plot 3: Parallel Coordinates plot</h3>
+<pre><code>PiecePrice &lt;- GGally::ggparcoord(data=no_na,
+                         columns = c(3,5), # c(3,5,8,9)
+                         groupColumn = 1,
+                         title = &quot;Quantity of Part Required Vs. Price per Piece&quot;)</code></pre>
+<p><img
+src="Outputs/LegoParaCoordPlot.jpeg"
+style="width:70.0%" /></p>
 </div>
-<div
-id="create-a-vector-queue---csheep-fox-owl-ant-where-queue-represents-the-animals-that-are-lined-up-to-enter-noahs-ark-with-the-sheep-at-the-front-of-the-line.-using-r-expressions-update-queue-as"
-class="section level3">
-<h3>4) Create a
-vector <code>queue &lt;- c("sheep", "fox", "owl", "ant")</code> where <code>queue</code> represents
-the animals that are lined up to enter Noah’s Ark, with the sheep at the
-front of the line. Using R expressions,
-update <code>queue</code> as:</h3>
-<pre><code>queue &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;)
-print(queue)</code></pre>
-<p><code>[1] "sheep" "fox" "owl" "ant"</code></p>
-<ol style="list-style-type: lower-alpha">
-<li>The serpent arrives and gets in line</li>
-</ol>
-<pre><code>queue &lt;- c(queue, &quot;serpent&quot;)
-print(queue)</code></pre>
-<p><code>[1] "sheep" "fox" "owl" "ant" "serpent"</code></p>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>The sheep enters the ark</li>
-</ol>
-<pre><code>queue &lt;- queue[-1]
-print(queue)</code></pre>
-<p><code>[1] "fox" "owl" "ant" "serpent"</code></p>
-<ol start="3" style="list-style-type: lower-alpha">
-<li>The donkey arrives and talks his way to the front of the line</li>
-</ol>
-<pre><code>queue &lt;- c(&quot;donkey&quot;, queue)
-print(queue)</code></pre>
-<p><code>[1] "donkey" "fox" "owl" "ant" "serpent"</code></p>
-<ol start="4" style="list-style-type: lower-alpha">
-<li>The serpent gets impatient and leaves</li>
-</ol>
-<pre><code>queue &lt;- queue[-5]
-print(queue)</code></pre>
-<p><code>[1] "donkey" "fox" "owl" "ant"</code></p>
-<ol start="5" style="list-style-type: lower-alpha">
-<li>The owl gets bored and leaves</li>
-</ol>
-<pre><code>queue &lt;- queue[-3]
-print(queue)</code></pre>
-<p><code>[1] "donkey" "fox" "ant"</code></p>
-<ol start="6" style="list-style-type: lower-alpha">
-<li>The aphid arrives and the ant invites him to cut in line</li>
-</ol>
-<pre><code>queue &lt;- c(queue[1:2],&quot;aphid&quot;,queue[3])
-print(queue)</code></pre>
-<p><code>[1] "donkey" "fox" "aphid" "ant"</code></p>
-<ol start="7" style="list-style-type: lower-alpha">
-<li>Determine the position of the aphid in the line</li>
-</ol>
-<pre><code>aphid_pos &lt;- which(queue==&quot;aphid&quot;)
-print(aphid_pos)</code></pre>
-<p><code>[1] 3</code></p>
-</div>
-<div
-id="use-r-to-create-a-vector-of-all-of-the-integers-from-1-to-100-that-are-not-divisible-by-2-3-or-7"
-class="section level3">
-<h3>5) Use R to create a vector of all of the integers from 1 to 100
-that are not divisible by 2, 3, or 7</h3>
-<pre><code>num &lt;- seq(1, 100, by = 1)
-num_filt &lt;- num[!(num %% 2 == 0 | num %% 3 == 0 | num %% 7 == 0)]
-print(num_filt)</code></pre>
-<p><code>[1] 1 5 11 13 17 19 23 25 29 31 37 41 43 47 53 55 59 61 65 67 71 73 79 83 85 89 95 97</code></p>
 </div>
 
 

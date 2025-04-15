@@ -11,9 +11,9 @@
 
 <meta name="author" content="Sage Sularz" />
 
-<meta name="date" content="2025-02-05" />
+<meta name="date" content="2025-03-26" />
 
-<title>Homework 4</title>
+<title>Homework 9</title>
 
 <script src="site_libs/header-attrs-2.29/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -298,145 +298,190 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Homework 4</h1>
+<h1 class="title toc-ignore">Homework 9</h1>
 <h4 class="author">Sage Sularz</h4>
-<h4 class="date">2025-02-05</h4>
+<h4 class="date">2025-03-26</h4>
 
 </div>
 
 
-<div
-id="suppose-x-1.1-a-2.2-and-b-3.3.-assign-each-expression-to-the-value-of-the-variable-z-and-print-the-value-stored-in-z."
-class="section level3">
-<h3>1) Suppose <em>x</em> = 1.1, <em>a</em> = 2.2, and <em>b</em> = 3.3.
-Assign each expression to the value of the variable <em>z</em> and print
-the value stored in <em>z</em>.</h3>
-<pre><code>x &lt;- 1.1
-a &lt;- 2.2
-b &lt;- 3.3</code></pre>
-<ol style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code>z = x^{a^b}
-print(z)</code></pre>
-<p><code>[1] 3.61714</code></p>
-<ol start="2" style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code>z = (x^a)^b
-print(z)</code></pre>
-<p><code>[1] 1.997611</code></p>
-<ol start="3" style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code>z = 3*x^3 + 2*x^2 + 1
-print(z)</code></pre>
-<p><code>[1] 7.413</code></p>
-</div>
-<div id="using-the-rep-and-seq-functions-create-the-following-vectors"
-class="section level3">
-<h3>3) Using the <code>rep</code> and <code>seq</code> functions, create
-the following vectors:</h3>
-<ol style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code>z &lt;- c(seq(1:8), seq(from = 7, to = 1))
-print(z)</code></pre>
-<p><code>[1] 1 2 3 4 5 6 7 8 7 6 5 4 3 2 1</code></p>
-<ol start="2" style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code>z &lt;- c(1:5)
-z &lt;- rep(x=z,times=z)
-print(z)</code></pre>
-<p><code>[1] 1 2 2 3 3 3 4 4 4 4 5 5 5 5 5</code></p>
-<ol start="3" style="list-style-type: lower-alpha">
-<li></li>
-</ol>
-<pre><code>z &lt;- c(1:5)
-z &lt;- rep(x=5:1,times=z)
-print(z)</code></pre>
-<p><code>[1] 5 4 4 3 3 3 2 2 2 2 1 1 1 1 1</code></p>
-</div>
-<div
-id="create-a-vector-of-two-random-uniform-numbers.-in-a-spatial-map-these-can-be-interpreted-as-x-and-y-coordinates-that-give-the-location-of-an-individual.-using-one-of-rs-inverse-trigonometry-functions-asin-acos-or-atan-convert-these-numbers-into-polar-coordinates"
-class="section level3">
-<h3>3) Create a vector of two random uniform numbers. In a spatial map,
-these can be interpreted as <em>x</em> and <em>y</em> coordinates that
-give the location of an individual. Using one of R’s inverse
-trigonometry functions (<code>asin()</code>, <code>acos()</code>,
-or <code>atan()</code>), convert these numbers into polar
-coordinates</h3>
-<pre><code>set.seed(2)
-cartesian &lt;- runif(2)
+<div id="strategic-coding-practices" class="section level1">
+<h1>Strategic Coding Practices</h1>
+<p>Find main file on desktop and familiarize with contents</p>
+<p><code>folders &lt;- list.files(path = "~/Desktop/NEON_count-landbird", pattern = "-2025", full.names = FALSE)</code></p>
+<p><strong>Prepare to run loop:</strong></p>
+<p>Create empty list to hold the files I would like to work with</p>
+<p><code>countdata_list &lt;- list()</code></p>
+<p>Create empty data frame to hold the values generated in loop</p>
+<pre><code>stats &lt;- data.frame(
+  filename = character(),
+  abundance = numeric(),
+  richness = numeric(),
+  year = numeric(),
+  stringsAsFactors = FALSE
+)</code></pre>
+<p>Create empty data frame for regression model statistics</p>
+<pre><code>regression_summary &lt;- data.frame(
+  coef_abundance = numeric(),
+  intercept = numeric(),
+  r_squared = numeric(),
+  p_value_abundance = numeric(),
+  stringsAsFactors = FALSE
+)</code></pre>
+<p>Check packages out of the library</p>
+<p><code>library(devtools) library(upscaler)</code></p>
+<p><strong>Process Data</strong></p>
+<pre><code>for (i in folders) {
+  files &lt;- list.files(
+    path = file.path(&quot;~/Desktop/NEON_count-landbird&quot;, i),
+    pattern = &quot;countdata&quot;,
+    full.names = TRUE
+  )
+  print(files)
 
-polar &lt;- c(sqrt(cartesian[1]^2 + cartesian[2]^2), atan(cartesian[2] / cartesian[1]))
-print(polar)</code></pre>
-<p><code>[1] 0.7262993 1.3134100</code></p>
+  for (j in files) {
+    count_data &lt;- read.csv(j)
+    countdata_list[[j]] &lt;- count_data
+
+    # Extract the filename
+    file_name &lt;- basename(j)
+
+    # Extract year from filename
+    year_match &lt;- regmatches(file_name, regexpr(&quot;20[0-9]{2}&quot;, file_name))
+    year &lt;- as.numeric(year_match)
+
+    # Clean
+    na.omit(j)
+
+    # Calculate abundance and richness
+    abundance &lt;- sum(count_data$clusterSize, na.rm = TRUE)
+    richness &lt;- length(unique(count_data$scientificName))
+
+    # Add row to stats data frame
+    stats &lt;- rbind(stats, data.frame(
+      filename = file_name,
+      abundance = abundance,
+      richness = richness,
+      year = year,
+      stringsAsFactors = FALSE
+    ))
+  }
+}</code></pre>
+<p>Run functions for regression and histograms</p>
+<p><code>regression_summary &lt;- regression_model(stats)</code></p>
+<p><code>create_histograms(stats)</code></p>
+<div id="results" class="section level3">
+<h3>Results</h3>
+<p><strong>Stats</strong></p>
+<table style="width:98%;">
+<colgroup>
+<col width="71%" />
+<col width="10%" />
+<col width="9%" />
+<col width="6%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>File Name</td>
+<td>Abundance</td>
+<td>Richness</td>
+<td>Year</td>
+</tr>
+<tr class="even">
+<td>NEON.D01.BART.DP1.10003.001.brd_countdata.2015-06.basic.20241118T065914Z.csv</td>
+<td>459</td>
+<td>40</td>
+<td>2015</td>
+</tr>
+<tr class="odd">
+<td>NEON.D01.BART.DP1.10003.001.brd_countdata.2016-06.basic.20241118T142515Z.csv</td>
+<td>696</td>
+<td>39</td>
+<td>2016</td>
+</tr>
+<tr class="even">
+<td>NEON.D01.BART.DP1.10003.001.brd_countdata.2017-06.basic.20241118T043125Z.csv</td>
+<td>411</td>
+<td>35</td>
+<td>2017</td>
+</tr>
+<tr class="odd">
+<td><br />
+NEON.D01.BART.DP1.10003.001.brd_countdata.2018-06.basic.20241118T105926Z.csv</td>
+<td>515</td>
+<td>37</td>
+<td>2018</td>
+</tr>
+<tr class="even">
+<td>NEON.D01.BART.DP1.10003.001.brd_countdata.2019-06.basic.20241118T064156Z.csv</td>
+<td>410</td>
+<td>44</td>
+<td>2019</td>
+</tr>
+<tr class="odd">
+<td>NEON.D01.BART.DP1.10003.001.brd_countdata.2020-06.basic.20241118T184512Z.csv</td>
+<td>489</td>
+<td>46</td>
+<td>2020</td>
+</tr>
+<tr class="even">
+<td>NEON.D01.BART.DP1.10003.001.brd_countdata.2020-07.basic.20241118T010504Z.csv</td>
+<td>54</td>
+<td>18</td>
+<td>2020</td>
+</tr>
+<tr class="odd">
+<td>NEON.D01.BART.DP1.10003.001.brd_countdata.2021-06.basic.20241118T105538Z.csv</td>
+<td>920</td>
+<td>50</td>
+<td>2021</td>
+</tr>
+<tr class="even">
+<td>NEON.D01.BART.DP1.10003.001.brd_countdata.2022-06.basic.20241118T033934Z.csv</td>
+<td>592</td>
+<td>39</td>
+<td>2022</td>
+</tr>
+<tr class="odd">
+<td>NEON.D01.BART.DP1.10003.001.brd_countdata.2023-06.basic.20241118T091043Z.csv</td>
+<td>523</td>
+<td>42</td>
+<td>2023</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Regression Summary</strong></p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="17%" />
+<col width="16%" />
+<col width="28%" />
+<col width="11%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td>coef_abundance</td>
+<td>intercept</td>
+<td>r_squared</td>
+<td>p_value_abundance</td>
+<td>n_obs</td>
+</tr>
+<tr class="even">
+<td>0.03137201</td>
+<td>23.09753</td>
+<td>0.6506631</td>
+<td>0.004808103</td>
+<td>10</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Histograms</strong></p>
+<p><img
+src="Outputs/abundance_histogram_HMK9.png" /></p>
+<p><img
+src="Outputs/richness_histogram_HMK9.png" /></p>
 </div>
-<div
-id="create-a-vector-queue---csheep-fox-owl-ant-where-queue-represents-the-animals-that-are-lined-up-to-enter-noahs-ark-with-the-sheep-at-the-front-of-the-line.-using-r-expressions-update-queue-as"
-class="section level3">
-<h3>4) Create a
-vector <code>queue &lt;- c("sheep", "fox", "owl", "ant")</code> where <code>queue</code> represents
-the animals that are lined up to enter Noah’s Ark, with the sheep at the
-front of the line. Using R expressions,
-update <code>queue</code> as:</h3>
-<pre><code>queue &lt;- c(&quot;sheep&quot;, &quot;fox&quot;, &quot;owl&quot;, &quot;ant&quot;)
-print(queue)</code></pre>
-<p><code>[1] "sheep" "fox" "owl" "ant"</code></p>
-<ol style="list-style-type: lower-alpha">
-<li>The serpent arrives and gets in line</li>
-</ol>
-<pre><code>queue &lt;- c(queue, &quot;serpent&quot;)
-print(queue)</code></pre>
-<p><code>[1] "sheep" "fox" "owl" "ant" "serpent"</code></p>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>The sheep enters the ark</li>
-</ol>
-<pre><code>queue &lt;- queue[-1]
-print(queue)</code></pre>
-<p><code>[1] "fox" "owl" "ant" "serpent"</code></p>
-<ol start="3" style="list-style-type: lower-alpha">
-<li>The donkey arrives and talks his way to the front of the line</li>
-</ol>
-<pre><code>queue &lt;- c(&quot;donkey&quot;, queue)
-print(queue)</code></pre>
-<p><code>[1] "donkey" "fox" "owl" "ant" "serpent"</code></p>
-<ol start="4" style="list-style-type: lower-alpha">
-<li>The serpent gets impatient and leaves</li>
-</ol>
-<pre><code>queue &lt;- queue[-5]
-print(queue)</code></pre>
-<p><code>[1] "donkey" "fox" "owl" "ant"</code></p>
-<ol start="5" style="list-style-type: lower-alpha">
-<li>The owl gets bored and leaves</li>
-</ol>
-<pre><code>queue &lt;- queue[-3]
-print(queue)</code></pre>
-<p><code>[1] "donkey" "fox" "ant"</code></p>
-<ol start="6" style="list-style-type: lower-alpha">
-<li>The aphid arrives and the ant invites him to cut in line</li>
-</ol>
-<pre><code>queue &lt;- c(queue[1:2],&quot;aphid&quot;,queue[3])
-print(queue)</code></pre>
-<p><code>[1] "donkey" "fox" "aphid" "ant"</code></p>
-<ol start="7" style="list-style-type: lower-alpha">
-<li>Determine the position of the aphid in the line</li>
-</ol>
-<pre><code>aphid_pos &lt;- which(queue==&quot;aphid&quot;)
-print(aphid_pos)</code></pre>
-<p><code>[1] 3</code></p>
-</div>
-<div
-id="use-r-to-create-a-vector-of-all-of-the-integers-from-1-to-100-that-are-not-divisible-by-2-3-or-7"
-class="section level3">
-<h3>5) Use R to create a vector of all of the integers from 1 to 100
-that are not divisible by 2, 3, or 7</h3>
-<pre><code>num &lt;- seq(1, 100, by = 1)
-num_filt &lt;- num[!(num %% 2 == 0 | num %% 3 == 0 | num %% 7 == 0)]
-print(num_filt)</code></pre>
-<p><code>[1] 1 5 11 13 17 19 23 25 29 31 37 41 43 47 53 55 59 61 65 67 71 73 79 83 85 89 95 97</code></p>
 </div>
 
 

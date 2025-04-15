@@ -147,17 +147,17 @@ grep (reg expressions check)
 
 ## R's four data types
 
-+------------+---------------+------------+
-|            | homoginous    | hetero     |
-+============+===============+============+
-| 1-D        | Atomic Vector | List       |
-+------------+---------------+------------+
-| 2-D        | Matrix        | Data Frame |
-|            |               |            |
-|            |               | vectors    |
-+------------+---------------+------------+
-| Multi- D   | array         |            |
-+------------+---------------+------------+
++----------+---------------+------------+
+|          | homoginous    | hetero     |
++==========+===============+============+
+| 1-D      | Atomic Vector | List       |
++----------+---------------+------------+
+| 2-D      | Matrix        | Data Frame |
+|          |               |            |
+|          |               | vectors    |
++----------+---------------+------------+
+| Multi- D | array         |            |
++----------+---------------+------------+
 
 Types of atomic vectors
 
@@ -281,15 +281,15 @@ fit_linear2
 
 Mean arguments
 
-+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| `trim`                            | the fraction (0 to 0.5) of observations to be trimmed from each end of `x` before the mean is computed. Values of trim outside that range are taken as the nearest endpoint. |
-+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+|  |  |
+|----|----|
+| `trim` | the fraction (0 to 0.5) of observations to be trimmed from each end of `x` before the mean is computed. Values of trim outside that range are taken as the nearest endpoint. |
 
 -   cuts out the extreme outliers \^\^
 
-+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
-| `na.rm`                           | a logical evaluating to `TRUE` or `FALSE` indicating whether `NA` values should be stripped before the computation proceeds. |
-+-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+|  |  |
+|----|----|
+| `na.rm` | a logical evaluating to `TRUE` or `FALSE` indicating whether `NA` values should be stripped before the computation proceeds. |
 
 \####
 
@@ -671,7 +671,7 @@ Markdown
 
 # Mar 25
 
-## Strat. Coding 
+## Strat. Coding
 
 Ended last time talking about structuring your project...
 
@@ -685,7 +685,7 @@ RDS object
 
     -   but those arent ideal cause they save the entire R enviroment and that is alot
 
-### Log file 
+### Log file
 
 -   plain txt file that is generated in the R system
 
@@ -709,7 +709,7 @@ RDS object
 
 -   creates new txt file with info about current session
 
-    -    date time user libraries etc
+    -   date time user libraries etc
 
 how to use?
 
@@ -717,7 +717,7 @@ how to use?
 
     -   `l('load libraries')` vs. `# load libraries`
 
-### Coding with User defined functions 
+### Coding with User defined functions
 
 `source()`
 
@@ -785,3 +785,356 @@ build_function(c("select_recipes",
 "serve_meal",
 "clean_up"))
 ```
+
+# Mar 27
+
+Components of a function
+
+O = object
+
+-   RDS
+
+S = script
+
+F = function script
+
+M = main script
+
+I = input
+
+-   csv, etc
+
+P = product (output)
+
+-   csv, tiffs, etc
+
+there is not one "correct " way to write a program but there is general structual parts that are imporant
+
+Main script
+
+-   function
+
+-   function
+
+-   function
+
+The main script is the hub the functions will run through
+
+-   make sure functions function
+
+-   this could be it if your project is simple enough
+
+What shouldnt you do?
+
+-   F -\> F
+
+    -   a function shouldnt call another function
+
+    -   rather F1 -\> O
+
+-   S -\> S
+
+    -   scripts shouldnt call eachother
+
+    -   rather S1 -\> RDS
+
+Common starting point: I -\> F -\> O
+
+# Apr 1
+
+## ggplot
+
+after leaving early last class I do not have access to the code we are building on in class today so just taking notes here and will fill in once notes are posted. I am peeved
+
+okay for future reference
+
+![Gotelli's GitHub](%5Bhttps://github.com/GotelliLab/Bio381https://github.com/GotelliLab/Bio381%5D(https://github.com/GotelliLab/Bio381)%7B.uri%7D)
+
+Started to fill in from downloaded Rmd off his git but we are moving on to the next lecture
+
+## ggplot II
+
+### Plotting multiple panel graphs with `patchwork`
+
+-   how do we combine all 4 plot types? Patchwork!
+
+-   like working within gg use the + to add things on (or together)
+
+    -   \+ plot_layout()
+
+        -   change orientation
+
+        -   change area each plot takes up
+
+    -   \+ plot_spacer()
+
+        -   create space in between plots
+
+        -   maybe to add something else later or just for asthetics
+
+    -   nested layers
+
+        -   manipulate arrangement in a more complex way
+
+-   operators
+
+    -   -operator for subtrack placement
+    -   / and \| for intuitive layouts
+        -   `(g1 | g2 | g3)/g4` obvious what it will look like
+        -   this is nice bc it just makes sense i think
+
+-   annotation
+
+    -   use patchwork to add captions titles and more
+
+        -   like what you might do in basic ggplot but this seems nicer and all asethtic shit in one spot
+
+    -   add letter names or other little labels to plots (v important!) use `plot_annotation()`
+
+-   orientation
+
+    -   `scale_x_reverse()`
+
+    ```         
+    -   mirror, flip and do whatever gymnastics with your plots
+    ```
+
+    -   `coord_flip()`
+
+        -   rather than flipflopping on x/y access effect the actual coords
+
+-   Saving
+
+    -   save your shit!!
+
+    -   use ggsave to be specific on format and specs
+
+    -   below is a good example of common specs for publishing
+
+```         
+ggsave(filename="MyPlot.pdf"
+       ,plot=g3, 
+       device="pdf",
+       width=20,
+       height=20,
+       units="cm",
+       dpi=300)
+```
+
+-   Basic mapping of aesthetic variables
+
+-   discrete variables
+
+    -   start paying more attention to `geom_point()` and `aes()`
+
+    -   map to color -\> aes(color = class)
+
+    -   map to shape -\> aes(shape = class)
+
+        -   ggplot is not a disign expert if you ask it to do something that looks like shit or is wrong it will do it
+
+    -   map to size -\> aes(size = class)
+
+        -   gg will rember what you did last and use that to follow future directions (no ai just whats in your enviroment)
+
+        -   better for continuous variables
+
+-   continuous
+
+    -   map to size can be used for a bubble plot- looks nice could be useful
+
+    -   map to color -\> makes almost a heat map
+
+-   Multiple variables at once
+
+    -   package more information into your visuals
+
+# Apr 3
+
+Faceting variables for more effective groupings
+
+-   split by variable
+
+-   this is this mini grid thing I was looking for!
+
+    -   shows relationships between groups AND where the missing data is
+
+-   ajusting axis scaling
+
+    -   depends on where you want to draw readers attention and what point you want to make
+
+-   `facet_wrap()`
+
+    -   w 2 classifying labs
+
+    -   doesnt include missing combinations
+
+        -   use facet_grid or mod with m1 + facet_wrap(\~class + fl`, drop=FALSE)` to bring them back
+
+-   facet with other aesthetic mapping within rows or columns
+
+    -   same kind of graph but now its colored
+
+-   changes to geom()
+
+    -   if you have lots of data it may be too overwelming to put in all the raw data instead consiter geom_smooth
+
+    -   basically a colored line reping a fitted regression line
+
+    -   shows linear trends in data and x & y subsets better
+
+-   what about other plot types?
+
+    -   change geom\^\^\^\^
+
+        -   `geom_point` vs `geom_smooth` vs `geom_boxplot` etc
+
+        -   what visual strategy communicated your point best?
+
+### Mapping aesthetics within geoms
+
+color: maps to points or lines with no thickness
+
+fill: fills space basically
+
+-   you can totaly combine all this however you feel like
+
+`geom_point(data=d[d$drv=="4",])`
+
+-   only select sub data as specified
+
+-   following normal sub setting rules within geom_point
+
+-   this will override previous statements in the plot
+
+## ggplot III
+
+### Barplots
+
+multiple groupings
+
+-   use the fill to map to variables within each bar
+
+-   `alpha` = opacity (0=transparent & 1=opaque)
+
+tapply
+
+-   wants to know x
+
+-   and needs a grouping factor
+
+-   passes name of function
+
+### Boxplots
+
+jitter: offsets points so you can see more of them
+
+-   gives some perspective on sample size
+
+# Apr 8
+
+## ggplot III (cont)
+
+New Packages:
+
+```         
+library(ggridges) # ridge plots
+library(ggbeeswarm) # beeswarm plots
+library(GGally) # parallel coordinates plots
+library(ggpie) # pie charts
+library(ggmosaic) # mosaic plots
+library(scatterpie) # scatter pies on map
+library(waffle) # for waffle plots
+library(DescTools) # for converting table to long
+library(treemap) # for tree maps
+```
+
+-   violin plot
+
+-   ridgeline plot
+
+-   beeswarm plot
+
+-   bubble plot
+
+    -   bubble size is dependent
+
+-   parallel coordinates plot
+
+    -   looking for a data set, and specific column numbers
+
+    -   each element in dataset is rescaled to fit the same y axis
+
+    -   tells you about the variability and patterns of co variation
+
+    -   option to simplify by putting elements in rank order first
+
+-   lollipop plot
+
+    -   need to build from scratch
+
+    -   `geom_segment` : draw a line
+
+        -   needs to know x, x end, y, and y end (coords for start and stop of line)
+
+    -   `geom_point` : head of the lolly
+
+        -   uses same coords as segment
+
+-   pie chart
+
+    -   dont use it not great at conveying proportions and looks like crap
+
+-   waffle plot
+
+    -   better alt to pie
+
+-   scatterpie diagrams
+
+    -   better way if you really like pie charts
+
+-   mosaic plots
+
+# April 10
+
+## ggplot color
+
+### **Using Colors**
+
+1.  Aesthetics
+
+    -   Colors that are attractive - large geoms (fills) - pale colors - small geoms(lines,points) - bright colors
+
+    -   Colors that highlight elements - pale, grey to de-emphasize - bright or saturated colors to emphasize
+
+    -   Colors that are visible to the color blind
+
+    -   Colors that convert well to black and white
+
+<!-- -->
+
+2.  Information content
+
+    -   Discrete scale
+
+        -   colors to group similar treatments
+
+        -   neutral colors (black,grey,white) to indicate control groups
+
+        -   Symbolic colors (heat=red, cool = blue, photosynthesis/growth=green, oligotrophic=blue, eutrophic=brown, infected=red)
+
+        -   Colors that map to chemical stains or gels, or even colors of organisms
+
+    -   Continuous scale
+
+        -   monochromatic (differing shades of 1 color)
+
+        -   2 tone chromatic scale (from color x to color y)
+
+        -   3 tone divergent scale (from color x through color y to color z)
+
+        -   Use color information within and between graphs
+
+        -   show color names, hex in base R
+
+        -   show color schemes in colorbrewer
