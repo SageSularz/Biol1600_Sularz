@@ -355,6 +355,55 @@ style="width:70.0%" /></p>
 src="Outputs/LegoParaCoordPlot.jpeg"
 style="width:70.0%" /></p>
 </div>
+<div id="plot-4-lollipop-plot" class="section level3">
+<h3>Plot 4: Lollipop Plot</h3>
+<p>Restructure data and assign colors</p>
+<pre><code># Isolate the top five colors in set
+top5 &lt;- tabled_data2 %&gt;%
+  arrange(desc(Freq)) %&gt;%
+  slice(1:5)
+
+# Assign names to color codes
+color_names &lt;- c(
+  &quot;0&quot; = &quot;Black&quot;,
+  &quot;70&quot; = &quot;Reddish Brown&quot;,
+  &quot;71&quot; = &quot;Light Bluish Gray&quot;,
+  &quot;72&quot; = &quot;Dark Bluish Gray&quot;,
+  &quot;308&quot; = &quot;Dark Brown&quot;
+)
+
+# Replace code with color name 
+top5 &lt;- top5 %&gt;%
+  mutate(Color = recode(as.character(Color), !!!color_names))
+
+# Assign correct hex codes (from LEGO.com)
+my_cols &lt;- c(&quot;#05131D&quot;, &quot;#582A12&quot;, &quot;#A0A5A9&quot;, &quot;#6C6E68&quot;, &quot;#352100&quot;)</code></pre>
+<p>Create plot</p>
+<pre><code>lolli_colors &lt;- ggplot(data=top5) +
+  aes(x=Color, y=Freq) +
+  geom_segment(aes(x=Color,
+                   xend=Color, y=0,
+                   yend=Freq),
+               color=my_cols,
+               linewidth=2) +
+  geom_point( color=my_cols, size=7) +
+  labs(title=&quot;Top Colors&quot;,
+       x=&quot;&quot;,
+       y=&quot;Count&quot;) +
+  coord_flip() +
+  theme_light(base_size=20,base_family=
+                &quot;Monaco&quot;) +
+  theme(
+    panel.grid.major.x = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks.y = element_blank(),
+    plot.title.position = &quot;plot&quot;,
+    plot.title = element_text(hjust = 0))
+lolli_colors</code></pre>
+<p><img
+src="Plots/hmk10_lollypop.jpeg"
+style="width:70.0%" /></p>
+</div>
 </div>
 
 

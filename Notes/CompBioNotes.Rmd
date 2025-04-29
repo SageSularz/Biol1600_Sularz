@@ -1138,3 +1138,19 @@ library(treemap) # for tree maps
         -   show color names, hex in base R
 
         -   show color schemes in colorbrewer
+
+# April 15
+
+Whiteboard notes
+
+`filebatcher()`
+
+**.csv** —table.read() —\> **DF** ——\> script.R ——\> **plot** & **list (out1, out2, out3)**
+
+why is list format important?
+
+**list (out1, out2, out3)** ——\> summary DF ( \| **out1 \| out2 \| out3 \| )**
+
+for multiple .csv
+
+-   loop them through and get output for each

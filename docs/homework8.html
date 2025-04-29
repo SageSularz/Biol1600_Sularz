@@ -335,12 +335,14 @@ summary(z)</code></pre>
 <pre><code>p1 &lt;- ggplot(data=z, aes(x=myVar, y=..density..)) +
   geom_histogram(color=&quot;grey60&quot;,fill=&quot;cornsilk&quot;,size=0.2) 
 print(p1)</code></pre>
-<p><img src="~/Desktop/Test/hmk8_combined_plot1.jpeg"
+<p><img
+src="hmk8_combined_plot1.jpeg"
 style="width:70.0%" /></p>
 <p><strong>Add empirical density curve</strong></p>
 <pre><code>p1 &lt;-  p1 +  geom_density(linetype=&quot;dotted&quot;,size=0.75)
 print(p1)</code></pre>
-<p><img src="~/Desktop/Test/hmk8_combined_plot2.jpeg"
+<p><img
+src="hmk8_combined_plot2.jpeg"
 style="width:70.0%" /></p>
 <p><strong>Maximum likelihood parameters for normal model</strong></p>
 <pre><code>normPars &lt;- fitdistr(z$myVar,&quot;normal&quot;)
@@ -363,7 +365,8 @@ xval &lt;- seq(0,max(z$myVar),len=length(z$myVar))
 
  stat &lt;- stat_function(aes(x = xval, y = ..y..), fun = dnorm, colour=&quot;red&quot;, n = length(z$myVar), args = list(mean = meanML, sd = sdML))
  p1 + stat</code></pre>
-<p><img src="~/Desktop/Test/hmk8_combined_plot3.jpeg"
+<p><img
+src="hmk8_combined_plot3.jpeg"
 style="width:70.0%" /></p>
 <p><strong>Plot exponential probability density</strong></p>
 <pre><code>expoPars &lt;- fitdistr(z$myVar,&quot;exponential&quot;)
@@ -371,12 +374,14 @@ rateML &lt;- expoPars$estimate[&quot;rate&quot;]
 
 stat2 &lt;- stat_function(aes(x = xval, y = ..y..), fun = dexp, colour=&quot;blue&quot;, n = length(z$myVar), args = list(rate=rateML))
  p1 + stat + stat2</code></pre>
-<p><img src="~/Desktop/Test/hmk8_combined_plot4.jpeg"
+<p><img
+src="hmk8_combined_plot4.jpeg"
 style="width:70.0%" /></p>
 <p><strong>Plot uniform probability density</strong></p>
 <pre><code>stat3 &lt;- stat_function(aes(x = xval, y = ..y..), fun = dunif, colour=&quot;darkgreen&quot;, n = length(z$myVar), args = list(min=min(z$myVar), max=max(z$myVar)))
  p1 + stat + stat2 + stat3</code></pre>
-<p><img src="~/Desktop/Test/hmk8_combined_plot5.jpeg"
+<p><img
+src="hmk8_combined_plot5.jpeg"
 style="width:70.0%" /></p>
 <p><strong>Plot gamma probability density</strong></p>
 <pre><code>gammaPars &lt;- fitdistr(z$myVar,&quot;gamma&quot;)
@@ -385,7 +390,8 @@ rateML &lt;- gammaPars$estimate[&quot;rate&quot;]
 
 stat4 &lt;- stat_function(aes(x = xval, y = ..y..), fun = dgamma, colour=&quot;brown&quot;, n = length(z$myVar), args = list(shape=shapeML, rate=rateML))
  p1 + stat + stat2 + stat3 + stat4</code></pre>
-<p><img src="~/Desktop/Test/hmk8_combined_plot6.jpeg"
+<p><img
+src="hmk8_combined_plot6.jpeg"
 style="width:70.0%" /></p>
 <p><strong>Plot beta probability density</strong></p>
 <pre><code>pSpecial &lt;- ggplot(data=z, aes(x=myVar/(max(myVar + 0.1)), y=..density..)) +
@@ -399,13 +405,15 @@ shape2ML &lt;- betaPars$estimate[&quot;shape2&quot;]
 
 statSpecial &lt;- stat_function(aes(x = xval, y = ..y..), fun = dbeta, colour=&quot;orchid&quot;, n = length(z$myVar), args = list(shape1=shape1ML,shape2=shape2ML))
 pSpecial + statSpecial</code></pre>
-<p><img src="~/Desktop/Test/hmk8_combined_plot7.jpeg"
+<p><img
+src="hmk8_combined_plot7.jpeg"
 style="width:70.0%" /></p>
 </div>
 <div id="finding-the-best-fitting-distribution-for-my-data-set"
 class="section level3">
 <h3>2) Finding the best-fitting distribution for my data set</h3>
-<p><img src="~/Desktop/Test/hmk8_mydata_plot6.jpeg"
+<p><img
+src="hmk8_mydata_plot6.jpeg"
 style="width:70.0%" /></p>
 <p>My data is best represented by the gamma density curve (shown in
 brown)</p>
@@ -431,7 +439,8 @@ str(z)
 summary(z$myVar)</code></pre>
 <p><strong>Plot the new data set and compare to my original
 data</strong></p>
-<p><img src="~/Desktop/Test/hmk8_combined_plot8.jpeg"
+<p><img
+src="hmk8_combined_plot8.jpeg"
 style="width:70.0%" /></p>
 </div>
 
